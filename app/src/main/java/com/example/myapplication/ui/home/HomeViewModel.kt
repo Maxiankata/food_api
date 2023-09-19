@@ -32,8 +32,12 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
 
     private fun fetchRecipe() {
         viewModelScope.launch {
-            val result = api.getRecipesByComplexSearch("pasta").first()
-            _recipe.postValue(result)
+//            val result =
+//            listOf(api.getRecipesByComplexSearch("cookies").last(),
+//                api.getRecipesByComplexSearch("lobster").last(),
+//                api.getRecipesByComplexSearch("watermelon").last(),
+//                api.getRecipesByComplexSearch("cola").last()).random()
+//            _recipe.postValue(result)
         }
     }
 

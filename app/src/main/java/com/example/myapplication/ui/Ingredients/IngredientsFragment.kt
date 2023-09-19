@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentIngredientsBinding
+import com.example.myapplication.setRoundedCorners
 
 
 class IngredientsFragment : Fragment() {
@@ -37,8 +38,10 @@ class IngredientsFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         // Make the fab visible
         (activity as? MainActivity)?.setFabVisibility(View.GONE)

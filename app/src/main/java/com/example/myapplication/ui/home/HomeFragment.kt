@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.setExplicableRoundedCorners
@@ -48,7 +49,8 @@ class HomeFragment : Fragment() {
                 binding.funfact.text = it.title
                 Glide.with(requireContext())
                     .load(it.imageUrl)
-                    //.transition(DrawableTransitionOptions.withCrossFade())
+
+//                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(binding.imageScroller)
             }
 
