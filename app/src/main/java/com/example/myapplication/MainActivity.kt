@@ -100,9 +100,7 @@ class MainActivity : AppCompatActivity() {
             sunMenuItem.isVisible = false
             true }
         }
-        sunMenuItem.apply {
 
-        }
 
     }
 

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/IngredientSearch"
-        android:name="com.example.myapplication.ui.Ingredients.FragmentIngredients"
+        android:name="com.example.myapplication.ui.Ingredients.IngredientsFragment"
         android:label="fragment_ingredients"
         tools:layout="@layout/fragment_ingredients" />
     <fragment

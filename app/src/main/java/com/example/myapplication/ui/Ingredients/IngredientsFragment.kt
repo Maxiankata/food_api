@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentIngredientsBinding
 
 
-class FragmentIngredients : Fragment() {
+class IngredientsFragment : Fragment() {
     private var _binding: FragmentIngredientsBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+//    private lateinit var ingredientsAdapter: IngredientsAdapter
+    ////   private val ingredientsViewModel:IngredientsViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +41,12 @@ class FragmentIngredients : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Make the fab visible
-        (activity as? MainActivity)?.setFabVisibility(View.VISIBLE)
-
+        (activity as? MainActivity)?.setFabVisibility(View.GONE)
+//        ingredientsAdapter = IngredientsAdapter()
+//        binding?.itemRecyclerView?.apply {
+//            layoutManager = GridLayoutManager(context, 1)
+//            adapter = IngredientsAdapter()
+//        }
         // Rest of your code
     }
 

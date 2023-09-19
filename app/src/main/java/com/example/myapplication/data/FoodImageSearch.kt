@@ -1,8 +1,8 @@
 package com.example.myapplication.data
 
 data class FoodImageSearch(
+    val id: Int? = null,
     val name: List<Food> = emptyList(),
-    val id: String? = null,
     val url: String? = null
 
 )

@@ -199,8 +199,16 @@
             app:layout_constraintEnd_toEndOf="@id/weekly_recommended"
             app:layout_constraintStart_toStartOf="@id/weekly_recommended"
             app:layout_constraintTop_toTopOf="@id/weekly_recommended" />
+        <TextView
+            android:id="@+id/funfact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/nutrients_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
 
-
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,19 @@
 package com.example.myapplication.data
 
+import com.google.gson.annotations.SerializedName
+
 
 @kotlinx.serialization.Serializable
-data class Food(
-    val id: Int,
-    val title: String? = null,
-    val image: String? = null,
-    val imageType:String
 
+data class Food(
+    @SerializedName("id") val id: Int,
+    @SerializedName("title") val title: String? = null,
+    @SerializedName("image") val image: String? = null,
+    @SerializedName("imageType") val imageType: String? = null
 )
 data class RecipeResponse(
-    val results: List<Food?> = emptyList(),
-    val offset: Int? = 0,
-    val number: Int? = 0,
-    val totalResults: Int? = 0
+    @SerializedName("results") val results: List<Food?> = emptyList(),
+    @SerializedName("offset") val offset: Int? = 0,
+    @SerializedName("number") val number: Int? = 0,
+    @SerializedName("totalResults") val totalResults: Int? = 0
 )

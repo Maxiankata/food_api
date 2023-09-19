@@ -63,11 +63,6 @@ fun View.setExplicableRoundedCorners(
     clipToOutline = true
 }
 
-
-
-
-
-
 fun View.setRoundedCorners(radius: Float) {
     outlineProvider = RoundedCorners(radius)
     clipToOutline = true
