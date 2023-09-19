@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Home"
+            android:icon="@drawable/information_sign"
+            android:title="@string/information"
+            android:iconTint="@color/red_aggressive"
+            />
+        <item
+            android:id="@+id/information_extended"
+            android:title=""
+            app:actionLayout="@layout/information_extended" />
+        <item
+            android:id="@+id/favorite_button"
+            android:icon="@drawable/baseline_star_24"
+            android:title="@string/favorites"
+            android:iconTint="@color/red_aggressive"
+            app:showAsAction="always"
+            />
+        <item
+            android:id="@+id/theme_moon"
+            android:icon="@drawable/moon"
+            android:title="@string/theme"
+            android:iconTint="@color/red_aggressive"
+            app:showAsAction="always"
+
+            />
+        <item
+            android:id="@+id/theme_sun"
+            android:icon="@drawable/sun"
+            android:title="@string/theme"
+            android:iconTint="@color/red_aggressive"
+            app:showAsAction="always"
+
+            />
+    </group>
+</menu>

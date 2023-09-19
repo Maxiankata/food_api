@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment" >
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/ScreenBackground"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/SubBackground"
+            />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/rick_rolls"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <ImageView
+            android:id="@+id/image_scroller"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="30dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/dish"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <ImageButton
+            android:id="@+id/ingredients"
+            android:layout_marginTop="20dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:background="#00000000"
+            android:scaleType="centerCrop"
+            android:src="@drawable/apples"
+            app:layout_constraintEnd_toStartOf="@+id/dish_search"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/image_scroller" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            style="@style/SubBackground"
+            android:alpha="0.5"
+            app:layout_constraintBottom_toBottomOf="@id/ingredients_text"
+            app:layout_constraintEnd_toEndOf="@id/ingredients_text"
+            app:layout_constraintStart_toStartOf="@id/ingredients_text"
+            app:layout_constraintTop_toTopOf="@id/ingredients_text"/>
+        <TextView android:id="@+id/ingredients_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/ingredients"
+            style="@style/TextAppearance"
+            android:textSize="20sp"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/ingredients"
+            app:layout_constraintEnd_toEndOf="@id/ingredients"
+            app:layout_constraintStart_toStartOf="@id/ingredients"
+            app:layout_constraintTop_toTopOf="@id/ingredients" />
+
+        <ImageButton
+            android:layout_marginTop="20dp"
+            android:src="@drawable/udon"
+            android:id="@+id/dish_search"
+            android:scaleType="centerCrop"
+            android:background="#000000"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="@id/ingredients"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ingredients"
+            app:layout_constraintTop_toBottomOf="@id/image_scroller" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            style="@style/SubBackground"
+            android:alpha="0.5"
+            app:layout_constraintBottom_toBottomOf="@id/dish_text"
+            app:layout_constraintEnd_toEndOf="@id/dish_text"
+            app:layout_constraintStart_toStartOf="@id/dish_text"
+            app:layout_constraintTop_toTopOf="@id/dish_text"/>
+        <TextView android:id="@+id/dish_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/dish_name"
+            style="@style/TextAppearance"
+            android:textSize="20sp"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/dish_search"
+            app:layout_constraintEnd_toEndOf="@id/dish_search"
+            app:layout_constraintStart_toStartOf="@id/dish_search"
+            app:layout_constraintTop_toTopOf="@id/dish_search" />
+        <ImageButton
+            android:src="@drawable/abs"
+            android:id="@+id/nutrients_search"
+            android:scaleType="centerCrop"
+            android:background="#00000000"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@id/ingredients"
+            app:layout_constraintEnd_toEndOf="@id/ingredients"
+            app:layout_constraintStart_toStartOf="@id/ingredients"
+            android:layout_margin="30dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            style="@style/SubBackground"
+            android:alpha="0.5"
+            app:layout_constraintBottom_toBottomOf="@id/nutrients_text"
+            app:layout_constraintEnd_toEndOf="@id/nutrients_text"
+            app:layout_constraintStart_toStartOf="@id/nutrients_text"
+            app:layout_constraintTop_toTopOf="@id/nutrients_text"/>
+
+        <TextView android:id="@+id/nutrients_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/favorites"
+            style="@style/TextAppearance"
+            android:textSize="20sp"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/nutrients_search"
+            app:layout_constraintEnd_toEndOf="@id/nutrients_search"
+            app:layout_constraintStart_toStartOf="@id/nutrients_search"
+            app:layout_constraintTop_toTopOf="@id/nutrients_search" />
+        <ImageButton
+            android:src="@drawable/rolls"
+            android:id="@+id/weekly_recommended"
+            android:scaleType="centerCrop"
+            android:background="#00000000"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@id/dish_search"
+            app:layout_constraintEnd_toEndOf="@id/dish_search"
+            app:layout_constraintStart_toStartOf="@id/dish_search"
+            android:layout_margin="30dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            style="@style/SubBackground"
+            android:alpha="0.5"
+            app:layout_constraintBottom_toBottomOf="@id/weekly_text"
+            app:layout_constraintEnd_toEndOf="@id/weekly_text"
+            app:layout_constraintStart_toStartOf="@id/weekly_text"
+            app:layout_constraintTop_toTopOf="@id/weekly_text"/>
+
+        <TextView android:id="@+id/weekly_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/weekly"
+            style="@style/TextAppearance"
+            android:textSize="20sp"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/weekly_recommended"
+            app:layout_constraintEnd_toEndOf="@id/weekly_recommended"
+            app:layout_constraintStart_toStartOf="@id/weekly_recommended"
+            app:layout_constraintTop_toTopOf="@id/weekly_recommended" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
