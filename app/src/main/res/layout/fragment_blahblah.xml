@@ -133,4 +133,5 @@
         android:background="@drawable/baseline_star_24"
         android:layout_width="50dp"
         android:layout_height="50dp"/></LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

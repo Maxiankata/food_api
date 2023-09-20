@@ -8,33 +8,35 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.RoundedCorners
 import com.example.myapplication.adapters.IngredientsAdapter
-import com.example.myapplication.data.FrontFood
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.databinding.FragmentIngredientsBinding
 import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.adapters.OptionRecyclerAdapter
 import com.example.myapplication.adapters.TextPredictionAdapter
-import com.example.myapplication.ui.home.HomeViewModel
+import com.example.myapplication.data.FoodFullInformation
+import com.example.myapplication.data.FrontFood
 
 
 class IngredientsFragment : Fragment() {
     private var _binding: FragmentIngredientsBinding? = null
+    private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+
     private lateinit var ingredientsAdapter: IngredientsAdapter
        private val ingredientsViewModel:IngredientsViewModel by viewModels()
 
@@ -48,9 +50,6 @@ class IngredientsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-        // Inflate the layout for this fragment
         _binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -63,7 +62,7 @@ class IngredientsFragment : Fragment() {
             homeViewModel.recipe.observe(viewLifecycleOwner){
                 binding.imageFoodTitle.text = it?.title
                 Glide.with(requireContext())
-                    .load(it?.imageUrl)
+                    .load(it?.image)
 
 //                    .transition(DrawableTransitionOptions.withCrossFade())
                     .into(binding.imageScroller)
@@ -79,7 +78,7 @@ class IngredientsFragment : Fragment() {
             val itemAdapter = OptionRecyclerAdapter().apply {
                 itemClickListener = object : ItemClickListener<FrontFood> {
                     override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-
+                        findNavController().navigate(R.id.blahblah)
                     }
                 }
             }
@@ -97,11 +96,11 @@ class IngredientsFragment : Fragment() {
                     RoundedCorners(20F)
                 }
                 textPredictionRecycler.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
+                    layoutManager = LinearLayoutManager(context)
                     adapter = textPredictionAdapter
                 }
                 itemRecyclerView.apply {
-                    layoutManager = LinearLayoutManager(requireContext())
+                    layoutManager = LinearLayoutManager(context)
                     adapter = itemAdapter
                 }
                 textInput.apply {
@@ -109,13 +108,18 @@ class IngredientsFragment : Fragment() {
                         override fun onQueryTextSubmit(query: String?): Boolean {
                             query?.let{
                                 ingredientsViewModel.fetchFood(query)
+
                             }
+                            textPredictionRecycler.visibility=GONE
                             return true
                         }
 
                         override fun onQueryTextChange(query: String?): Boolean {
                             query?.let {
-                                ingredientsViewModel.fetchPredictionText(query)
+                                textPredictionRecycler.visibility= VISIBLE
+                                handler.postDelayed({
+                                    ingredientsViewModel.fetchPredictionText(query)
+                                }, 1000)
                             }
                             return true
                         }
@@ -136,12 +140,8 @@ class IngredientsFragment : Fragment() {
             }
 
         // Make the fab visible
-        (activity as? MainActivity)?.setFabVisibility(View.GONE)
-//        ingredientsAdapter = IngredientsAdapter()
-//        binding?.itemRecyclerView?.apply {
-//            layoutManager = GridLayoutManager(context, 1)
-//            adapter = IngredientsAdapter()
-//        }
+        (activity as? MainActivity)?.setFabVisibility(GONE)
+
         // Rest of your code
     }
 
@@ -149,7 +149,7 @@ class IngredientsFragment : Fragment() {
         super.onDestroyView()
 
         // Hide the fab when the fragment is destroyed
-        (activity as? MainActivity)?.setFabVisibility(View.GONE)
+        (activity as? MainActivity)?.setFabVisibility(GONE)
     }
 
 }

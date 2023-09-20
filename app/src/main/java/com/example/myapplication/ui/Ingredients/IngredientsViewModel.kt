@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.getApiService
@@ -17,8 +18,8 @@ class IngredientsViewModel(application: Application) : AndroidViewModel(applicat
     private val _foods = MutableLiveData<List<FrontFood>>()
     private val _ingredients = MutableLiveData<List<FrontFood>>()
     val autoCompleteText: LiveData<List<TextPredictor>> get() = _predictionText
-    private val _recipe = MutableLiveData<FrontFood?>()
-    val recipe: MutableLiveData<FrontFood?> get() = _recipe
+    private val _recipe = MutableLiveData<FoodFullInformation?>()
+    val recipe: MutableLiveData<FoodFullInformation?> get() = _recipe
 
     val recipes: LiveData<List<FrontFood>> get() = _foods
     companion object {

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
+import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.FrontFood
 
 class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRecyclerViewHolder>() {
@@ -18,18 +19,22 @@ class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRe
         holder.bind(items[position])
     }
     inner class OptionRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
-        var image = view.findViewById<ImageView>(R.id.recyclerImage)
+        var recyclerImage = view.findViewById<ImageView>(R.id.recyclerImage)
         var container = view.findViewById<View>(R.id.container)
         var title = view.findViewById<TextView>(R.id.recipeName)
 
         fun bind(frontFood: FrontFood) {
-            Glide.with(image)
+            Glide.with(recyclerImage)
                 .load(frontFood.imageUrl)
-                .into(image)
+                .into(recyclerImage)
 
 //            Glide.with(image).load(frontFood.imageUrl).into(image)
 //            container.setRoundedCorners(30F)
             title.text = frontFood.title
+
+            itemView.setOnClickListener {
+                itemClickListener?.onItemClicked(frontFood, absoluteAdapterPosition)
+            }
         }
     }
 

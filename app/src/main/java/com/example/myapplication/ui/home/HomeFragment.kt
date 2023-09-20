@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.myapplication.R
@@ -60,9 +61,9 @@ class HomeFragment : Fragment() {
             ingredients.apply {
                 setExplicableRoundedCorners(80f, 0f, 0f, 0f)
                 setOnClickListener {
-                    view?.let {
-                        Navigation.findNavController(it).navigate(R.id.IngredientSearch)
-                    }
+
+                        findNavController().navigate(R.id.searchInflater)
+
                 }
             }
 
@@ -70,26 +71,25 @@ class HomeFragment : Fragment() {
                 setExplicableRoundedCorners(0f, 80f, 0f, 0f)
 
                 setOnClickListener {
-                    view?.let {
-                        Navigation.findNavController(it).navigate(R.id.fragmentDishName)
-                    }
+
+                        findNavController().navigate(R.id.dishInflater)
+
                 }
             }
             nutrientsSearch.apply {
 
                 setExplicableRoundedCorners(0f, 0f, 0f, 80f)
                 setOnClickListener {
-                    view?.let {
-                        Navigation.findNavController(it).navigate(R.id.fragmentNutrientSearch)
-                    }
+                    findNavController().navigate(R.id.fragmentFavoritesInflater)
+
 
                 }
             }
             weeklyRecommended.apply {
                 setExplicableRoundedCorners(0f, 0f, 80f, 0f)
                 setOnClickListener {
-                    view?.let { Navigation.findNavController(it).navigate(R.id.fragmentDishName) }
-                }
+                    findNavController().navigate(R.id.dishInflater) }
+
             }
         }
     }

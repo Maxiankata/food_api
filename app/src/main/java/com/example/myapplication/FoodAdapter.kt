@@ -1,7 +1,7 @@
 package com.example.myapplication
 
+import com.example.myapplication.adapters.Adapter
 import com.example.myapplication.data.Food
-import com.example.myapplication.data.FoodItem
 import com.example.myapplication.data.FrontFood
 
 

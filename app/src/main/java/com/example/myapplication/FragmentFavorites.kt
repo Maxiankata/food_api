@@ -37,6 +37,11 @@ class FragmentFavorites : Fragment() {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as? MainActivity)?.setFabVisibility(View.VISIBLE)
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
