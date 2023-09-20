@@ -11,13 +11,6 @@ import com.example.myapplication.data.FrontFood
 import com.example.myapplication.getApiService
 import kotlinx.coroutines.launch
 
-//class HomeViewModel : ViewModel() {
-//
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is home Fragment"
-//    }
-//    val text: LiveData<String> = _text
-//}
 class HomeViewModel(application: Application): AndroidViewModel(application) {
 
     private val _text = MutableLiveData<String>().apply {
