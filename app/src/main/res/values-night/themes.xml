@@ -18,5 +18,6 @@
     <style name="TextAppearance"><item name="android:textColor">@color/white</item></style>
     <style name="SubBackground"><item name="android:background">@color/blue_dark</item></style>
     <style name="SideBarColor"><item name="android:background">@color/side_bar_dark</item></style>
+    <style name="SearchMenuBackground"><item name="android:background">@color/search_bar_dark</item></style>
 
 </resources>

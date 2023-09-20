@@ -9,6 +9,8 @@ data class FoodFullInformation(
     @SerializedName("image") val image: String? = null,
     @SerializedName("readyInMinutes") val readyInMinutes:Int? = null,
     @SerializedName("dairyFree") val dairyFree:Boolean? = null,
+    @SerializedName("glutenFree") val glutenFree:Boolean? = null,
+    @SerializedName("servings") val servings:Boolean? = null,
     @SerializedName("analyzedInstructions") val analyzedInstructions:ArrayList<Pair<Int?, String>>?=null,
     @SerializedName("ingredients/name") val ingredients:List<String>?=null
 )

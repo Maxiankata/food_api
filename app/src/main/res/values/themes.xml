@@ -26,6 +26,8 @@
     <style name="TextAppearance"><item name="android:textColor">@color/white</item></style>
     <style name="SubBackground"><item name="android:background">@color/red_aggressive</item></style>
     <style name="SideBarColor"><item name="android:background">@color/side_bar_light</item></style>
+    <style name="SearchMenuBackground"><item name="android:background">@color/search_bar_light</item></style>
+
 
 
 

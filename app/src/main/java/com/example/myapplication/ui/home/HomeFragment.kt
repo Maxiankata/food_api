@@ -38,10 +38,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+//        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
 
         binding.apply {
 
@@ -91,9 +91,6 @@ class HomeFragment : Fragment() {
                     view?.let { Navigation.findNavController(it).navigate(R.id.fragmentDishName) }
                 }
             }
-
-
-
         }
     }
     override fun onDestroyView() {

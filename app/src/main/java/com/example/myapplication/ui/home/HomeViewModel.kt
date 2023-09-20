@@ -13,27 +13,18 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application): AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
+
     private var api: RetrofitFoodApiService = application.getApiService()
     private val _recipe = MutableLiveData<FrontFood>()
     val recipe: LiveData<FrontFood> get() = _recipe
-    init {
-        fetchRecipe()
-    }
-
-    private fun fetchRecipe() {
-        viewModelScope.launch {
+//    init {
+//        fetchRecipe()
+//    }
+//
+//    private fun fetchRecipe() {
+//        viewModelScope.launch {
 //            val result =
-//            listOf(api.getRecipesByComplexSearch("cookies").last(),
-//                api.getRecipesByComplexSearch("lobster").last(),
-//                api.getRecipesByComplexSearch("watermelon").last(),
-//                api.getRecipesByComplexSearch("cola").last()).random()
-//            _recipe.postValue(result)
-        }
-    }
-
-
-    val text: LiveData<String> = _text
+//                api.getRandomRecipe()
+//        }
+//    }
 }
