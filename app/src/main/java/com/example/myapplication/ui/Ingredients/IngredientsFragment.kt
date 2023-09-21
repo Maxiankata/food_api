@@ -76,6 +76,8 @@ class IngredientsFragment : Fragment() {
                 }
             }
             val itemAdapter = OptionRecyclerAdapter().apply {
+
+
                 itemClickListener = object : ItemClickListener<FrontFood> {
                     override fun onItemClicked(item: FrontFood, itemPosition: Int) {
                         findNavController().navigate(R.id.blahblah)

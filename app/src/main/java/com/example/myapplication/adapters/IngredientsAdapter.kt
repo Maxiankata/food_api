@@ -38,7 +38,7 @@ class   IngredientsAdapter(): RecyclerView.Adapter<IngredientsAdapter.Ingredient
         fun bind(food: FrontFood) {
             Glide.with(image).load(food.imageUrl).into(image)
             container.setRoundedCorners(30F)
-            recipeName.text = food.title
+//            recipeName.text = food.title
         }
     }
 }

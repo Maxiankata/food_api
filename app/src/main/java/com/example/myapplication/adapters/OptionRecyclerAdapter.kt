@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.FrontFood
+import com.example.myapplication.setExplicableRoundedCorners
+import com.example.myapplication.setRoundedCorners
 
 class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRecyclerViewHolder>() {
     private val items = ArrayList<FrontFood>()
@@ -27,9 +29,9 @@ class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRe
             Glide.with(recyclerImage)
                 .load(frontFood.imageUrl)
                 .into(recyclerImage)
-
+            recyclerImage.setExplicableRoundedCorners(40F, 10F, 40F, 10F)
 //            Glide.with(image).load(frontFood.imageUrl).into(image)
-//            container.setRoundedCorners(30F)
+            container.setRoundedCorners(30F)
             title.text = frontFood.title
 
             itemView.setOnClickListener {

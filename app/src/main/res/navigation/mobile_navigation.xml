@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/Home">
+    app:startDestination="@+id/information_icon">
 
     <fragment
-        android:id="@+id/Home"
+        android:id="@+id/information_icon"
         android:name="com.example.myapplication.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
@@ -44,12 +44,12 @@
         tools:layout="@layout/fragment_dish_name" />
     <fragment
         android:id="@+id/fragmentNutrientSearch"
-        android:name="com.example.myapplication.ui.nutrients.FragmentFavoritesSearch"
+        android:name="com.example.myapplication.ui.nutrients.FragmentNutrientSearch"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_nutrient_search" />
     <fragment
         android:id="@+id/fragmentFavorites"
-        android:name="com.example.myapplication.FragmentFavorites"
+        android:name="com.example.myapplication.ui.favorites.FragmentFavorites"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
