@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
             weeklyRecommended.apply {
                 setExplicableRoundedCorners(0f, 0f, 80f, 0f)
                 setOnClickListener {
-                    findNavController().navigate(R.id.dishInflater) }
+                    findNavController().navigate(R.id.action_information_icon_to_fragmentWeekly) }
 
             }
         }

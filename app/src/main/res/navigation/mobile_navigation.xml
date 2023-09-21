@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_Home_to_blahblah"
             app:destination="@id/blahblah" />
+        <action
+            android:id="@+id/action_information_icon_to_fragmentWeekly"
+            app:destination="@id/fragmentWeekly" />
 
     </fragment>
 
@@ -54,9 +57,14 @@
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/blahblah"
-        android:name="com.example.myapplication.FragmentExtendedInformation"
+        android:name="com.example.myapplication.ui.extendedInformation.FragmentExtendedInformation"
         android:label="Recipe Information"
         tools:layout="@layout/fragment_blahblah" />
+    <fragment
+        android:id="@+id/fragmentWeekly"
+        android:name="com.example.myapplication.ui.weekly.FragmentWeekly"
+        android:label="fragment_weekly"
+        tools:layout="@layout/fragment_weekly" />
 
 
 </navigation>

@@ -37,15 +37,19 @@
         app:layout_constraintEnd_toEndOf="@+id/image_scroller"
         app:layout_constraintStart_toStartOf="@+id/image_scroller"
         app:layout_constraintTop_toBottomOf="@+id/image_scroller" />
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/text_input"
+        app:layout_constraintEnd_toEndOf="@id/text_input"
+        app:layout_constraintTop_toBottomOf="@id/text_input">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        app:layout_constraintStart_toStartOf="@id/text_input"
-        app:layout_constraintEnd_toEndOf="@id/text_input"
-        app:layout_constraintTop_toBottomOf="@id/text_input"
         />
+    </ScrollView>
     <androidx.appcompat.widget.SearchView
         android:id="@+id/text_input"
         style="@style/StrongColor"
@@ -57,6 +61,7 @@
         android:gravity="top"
         android:hint="Search"
 />
+
     <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/text_prediction_recycler"
     android:layout_width="wrap_content"

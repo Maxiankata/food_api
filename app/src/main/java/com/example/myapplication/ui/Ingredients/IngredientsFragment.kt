@@ -11,6 +11,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -25,7 +26,6 @@ import com.example.myapplication.databinding.FragmentIngredientsBinding
 import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.adapters.OptionRecyclerAdapter
 import com.example.myapplication.adapters.TextPredictionAdapter
-import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.FrontFood
 
 
@@ -58,15 +58,15 @@ class IngredientsFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            val homeViewModel = ViewModelProvider(this)[IngredientsViewModel::class.java]
-            homeViewModel.recipe.observe(viewLifecycleOwner){
-                binding.imageFoodTitle.text = it?.title
-                Glide.with(requireContext())
-                    .load(it?.image)
-
-//                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(binding.imageScroller)
-            }
+            val ingredientsViewModel = ViewModelProvider(this)[IngredientsViewModel::class.java]
+//            ingredientsViewModel.recipe.observe(viewLifecycleOwner){
+//                binding.imageFoodTitle.text = it?.title
+//                Glide.with(requireContext())
+//                    .load(it?.image)
+//
+////                    .transition(DrawableTransitionOptions.withCrossFade())
+//                    .into(binding.imageScroller)
+//            }
 
             val textPredictionAdapter = TextPredictionAdapter().apply {
                 itemClickListener = object : ItemClickListener<TextPredictor> {
@@ -76,11 +76,9 @@ class IngredientsFragment : Fragment() {
                 }
             }
             val itemAdapter = OptionRecyclerAdapter().apply {
-
-
                 itemClickListener = object : ItemClickListener<FrontFood> {
                     override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-                        findNavController().navigate(R.id.blahblah)
+                        findNavController().navigate(R.id.blahblah, bundleOf("recipe_id" to id))
                     }
                 }
             }

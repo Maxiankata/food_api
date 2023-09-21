@@ -16,20 +16,16 @@ class TextPredictionAdapter: RecyclerView.Adapter<TextPredictionAdapter.TextPred
     private val items = ArrayList<TextPredictor>()
     var itemClickListener: ItemClickListener<TextPredictor>? = null
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): TextPredictionViewHolder {
+
+    override fun onBindViewHolder(holder: TextPredictionViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextPredictionViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_prediction, parent, false)
         return TextPredictionViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        holder: TextPredictionViewHolder,
-        position: Int
-    ) {
-        holder.bind(items[position])
-    }
+
     fun updateItems(newItems: List<TextPredictor>) {
         val oldList: List<TextPredictor> = ArrayList(items)
 

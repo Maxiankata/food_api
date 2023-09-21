@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
-import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.setExplicableRoundedCorners
 import com.example.myapplication.setRoundedCorners
@@ -45,16 +45,27 @@ class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRe
         return OptionRecyclerViewHolder(view)
     }
     fun updateItems(newItems: List<FrontFood>) {
+        val oldList: List<FrontFood> = ArrayList(items)
+
         items.clear()
         items.addAll(newItems)
-        notifyDataSetChanged()
+        DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+            override fun getOldListSize(): Int = oldList.size
+
+            override fun getNewListSize(): Int = newItems.size
+
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return oldList[oldItemPosition].id == newItems[newItemPosition].id
+            }
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return oldList[oldItemPosition] == newItems[newItemPosition]
+            }
+        }).dispatchUpdatesTo(this)
     }
     override fun getItemCount(): Int {
        return items.size
     }
-
-
-
 }
 
 interface ItemClickListener<T> {

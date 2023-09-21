@@ -14,7 +14,7 @@
     <string name="glutenFree">Gluten free:</string>
     <string name="vegan">Vegan:</string>
     <string name="servings">Servings:</string>
-    <string name="readyInMinutes">Ready in Minutes:</string>
+    <string name="readyInMinutes">Ready in \nminutes:</string>
     <string name="recipe_search">Recipe Search</string>
     <string name="recipe_information">Recipe Information</string>
 

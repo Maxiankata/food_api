@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/ScreenBackground"
-    tools:context=".FragmentExtendedInformation">
+    tools:context=".ui.extendedInformation.FragmentExtendedInformation">
     <View
         android:id="@+id/view"
         style="@style/SubBackground"
@@ -65,13 +65,22 @@
         android:id="@+id/readyInMinutes"
         style="@style/TextAppearance"
         android:layout_width="0dp"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:text="@string/readyInMinutes"
         android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/servings"
+        app:layout_constraintTop_toBottomOf="@+id/servings" />
+
+    <TextView
+        android:id="@+id/recipeName"
+        style="@style/TextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe_information"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
     <TextView
         android:id="@+id/servings"
         style="@style/TextAppearance"

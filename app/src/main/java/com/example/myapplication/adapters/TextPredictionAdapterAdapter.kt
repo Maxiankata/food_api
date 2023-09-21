@@ -1,5 +1,6 @@
 package com.example.myapplication.adapters
 
+import com.example.myapplication.data.Food
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.data.TextPredictorJsonStealer
 
