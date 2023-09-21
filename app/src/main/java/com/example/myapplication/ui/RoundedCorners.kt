@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.R
 import android.graphics.Outline
 import android.graphics.Path
 import android.graphics.Rect

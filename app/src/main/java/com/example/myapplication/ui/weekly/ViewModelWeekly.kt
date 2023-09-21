@@ -26,11 +26,5 @@ class ViewModelWeekly(application: Application) : AndroidViewModel(application) 
                 _api.getFoodByComplexSearch(query = "pasta")
             _foods.postValue(result)
         }
-//        viewModelScope.launch {
-//            val recipe = _api.getRandomRecipe()
-//            _recipe.postValue(_api.getRandomRecipe())
-//            Log.d("enhancedRecipe", "${_recipe.value}")
-//        }
-
     }
 }
