@@ -34,9 +34,6 @@ class IngredientsFragment : Fragment() {
     private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-
     private lateinit var ingredientsAdapter: IngredientsAdapter
        private val ingredientsViewModel:IngredientsViewModel by viewModels()
 
@@ -53,20 +50,9 @@ class IngredientsFragment : Fragment() {
         _binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-
-
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
             val ingredientsViewModel = ViewModelProvider(this)[IngredientsViewModel::class.java]
-//            ingredientsViewModel.recipe.observe(viewLifecycleOwner){
-//                binding.imageFoodTitle.text = it?.title
-//                Glide.with(requireContext())
-//                    .load(it?.image)
-//
-////                    .transition(DrawableTransitionOptions.withCrossFade())
-//                    .into(binding.imageScroller)
-//            }
 
             val textPredictionAdapter = TextPredictionAdapter().apply {
                 itemClickListener = object : ItemClickListener<TextPredictor> {
@@ -82,14 +68,6 @@ class IngredientsFragment : Fragment() {
                     }
                 }
             }
-//            textPredictionRecycler?.apply {
-//                layoutManager = LinearLayoutManager(requireContext())
-//                adapter = textPredictionAdapter
-//            }
-//            itemRecyclerView!!.apply {
-//                layoutManager = LinearLayoutManager(requireContext())
-//                adapter = itemAdapter
-//            }
 
             binding.apply {
                 imageScroller.apply {

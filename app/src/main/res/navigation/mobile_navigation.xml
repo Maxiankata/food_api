@@ -63,8 +63,12 @@
     <fragment
         android:id="@+id/fragmentWeekly"
         android:name="com.example.myapplication.ui.weekly.FragmentWeekly"
-        android:label="fragment_weekly"
-        tools:layout="@layout/fragment_weekly" />
+        android:label="@string/fragment_weekly"
+        tools:layout="@layout/fragment_weekly" >
+        <action
+            android:id="@+id/action_fragmentWeekly_to_blahblah"
+            app:destination="@id/blahblah" />
+    </fragment>
 
 
 </navigation>

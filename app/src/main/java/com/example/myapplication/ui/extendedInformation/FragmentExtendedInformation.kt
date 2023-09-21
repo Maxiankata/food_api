@@ -12,13 +12,14 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentExtendedInformationBinding
 import com.example.myapplication.setRoundedCorners
-import kotlin.math.log
 
 
 class FragmentExtendedInformation : Fragment() {
     private var _binding: FragmentExtendedInformationBinding? = null
     private val binding get() = _binding!!
-    private val receivedId = arguments?.getInt("recipe_id")
+
+
+
     private val informationViewModel: ExtendedInformationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,8 @@ class FragmentExtendedInformation : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        also { Log.d("ID RECIEVED", arguments?.getInt("recipe_id").toString()) }
+        informationViewModel.fetchFood(arguments?.getInt("recipe_id")!!)
         _binding = FragmentExtendedInformationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,7 +40,6 @@ class FragmentExtendedInformation : Fragment() {
         (activity as? MainActivity)?.setFabVisibility(VISIBLE)
 
         informationViewModel.foods.observe(viewLifecycleOwner){
-
             recipe -> Glide.with(this).load(recipe.image).into(binding.imageView)
             binding.readyInMinutes.text =  recipe.readyInMinutes.toString()
             binding.veganTag.text =  recipe.vegan.toString()
@@ -46,20 +47,9 @@ class FragmentExtendedInformation : Fragment() {
             binding.glutenTag.text =  recipe.glutenFree.toString()
             binding.dairyTag.text =  recipe.dairyFree.toString()
             binding.recipeName.text =  recipe.title.toString()
-            Log.d("SPAS", " BINDING AS WE SPEAK")
-
+            Log.d("BIND", " BINDING AS WE SPEAK")
         }
         binding.apply {
-            readyInMinutes
-            imageView
-            veganTag
-            servings
-            glutenTag
-            dairyTag
-            ingredientsScroll
-            recipeScroll
-            recipeName
-
             starLayout.apply {
                 setRoundedCorners(120F)
             }

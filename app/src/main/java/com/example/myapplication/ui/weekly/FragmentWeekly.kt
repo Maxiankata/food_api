@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.weekly
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,6 @@ class FragmentWeekly : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentWeeklyBinding.inflate(inflater, container, false)
         return binding.root    }
 
@@ -41,7 +41,8 @@ class FragmentWeekly : Fragment() {
         val itemAdapter = OptionRecyclerAdapter().apply {
             itemClickListener = object : ItemClickListener<FrontFood> {
                 override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-                    findNavController().navigate(R.id.blahblah, bundleOf("recipe_id" to id))
+                    Log.d("ID SENT", item.id.toString())
+                    findNavController().navigate(R.id.action_fragmentWeekly_to_blahblah, bundleOf("recipe_id" to item.id))
                 }
             }
         }

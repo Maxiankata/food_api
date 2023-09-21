@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.extendedInformation
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,9 +14,10 @@ class ExtendedInformationViewModel(application: Application) : AndroidViewModel(
     private val _api = application.getApiService()
     private val _foods = MutableLiveData<FullInformationRecipe>()
     val foods: LiveData<FullInformationRecipe> get() = _foods
-//    fun fetchFood(query: String){
-//        viewModelScope.launch {
-//            foods.postValue(_api.getRandomRecipe())
-//        }
-//    }
+    fun fetchFood(id: Int){
+        viewModelScope.launch {
+            _foods.postValue(_api.getRecipeById(id))
+            Log.d("FETCH", "FOOD FETCHED")
+        }
+    }
 }

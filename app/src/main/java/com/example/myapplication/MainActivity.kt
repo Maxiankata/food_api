@@ -61,9 +61,8 @@ class MainActivity : AppCompatActivity() {
         val informationIcon = menu.findItem(R.id.information_icon)
         val informationExtended :MenuItem = menu.findItem(R.id.information_extended)
         val textView = informationExtended.actionView as? TextView
-        val isMoonIconVisible = sharedPreferences.getBoolean("moonIconVisible", false)
+        val isMoonIconVisible = sharedPreferences.getBoolean("moonIconVisible", true)
 
-//        textView?.setTextColor(ContextCompat.getColor(this, R.color.black))
         informationExtended.isVisible=false
         moonMenuItem.isVisible = !isMoonIconVisible
         sunMenuItem.isVisible = isMoonIconVisible
