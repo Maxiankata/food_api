@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.Ingredients
+package com.example.myapplication.ui.dish_name
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -7,23 +7,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.FrontFood
-//import com.example.myapplication.data.ApiResponse
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.getApiService
 import kotlinx.coroutines.launch
 
-class IngredientsViewModel(application: Application) : AndroidViewModel(application) {
+class DishNameViewModel(application: Application) : AndroidViewModel(application) {
     private val _api = application.getApiService()
     private val _predictionText = MutableLiveData<List<TextPredictor>>()
     val _foods = MutableLiveData<List<FrontFood>>()
-    val foods : MutableLiveData<List<FrontFood>> get() = _foods
-
     val autoCompleteText: LiveData<List<TextPredictor>> get() = _predictionText
     private val _recipe = MutableLiveData<FoodFullInformation?>()
     val recipe: MutableLiveData<FoodFullInformation?> get() = _recipe
-
     val recipes: LiveData<List<FrontFood>> get() = _foods
-
     fun fetchPredictionText(query: String){
         viewModelScope.launch {
             _predictionText.postValue(_api.getPrediction(query))
@@ -32,7 +27,7 @@ class IngredientsViewModel(application: Application) : AndroidViewModel(applicat
 
     fun fetchFood(query: String){
         viewModelScope.launch {
-            _foods.postValue(_api.getFoodByComplexSearch(query))
+            _foods.postValue(_api.findByIngredients(query))
         }
     }
 }

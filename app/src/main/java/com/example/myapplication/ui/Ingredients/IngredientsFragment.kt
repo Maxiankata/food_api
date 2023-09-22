@@ -69,7 +69,7 @@ class IngredientsFragment : Fragment() {
                     }
                 }
             }
-            ingredientsViewModel._foods.observe(viewLifecycleOwner){
+            ingredientsViewModel.foods.observe(viewLifecycleOwner){
 
             }
             binding.apply {

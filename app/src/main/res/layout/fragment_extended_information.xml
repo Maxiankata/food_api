@@ -172,7 +172,8 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintVertical_weight="1"
         >
-        <TextView
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/ingredientsViewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/extended_information"
@@ -189,7 +190,8 @@
         app:layout_constraintStart_toEndOf="@id/ingredientsScroll"
         app:layout_constraintEnd_toEndOf="parent"
         >
-        <TextView
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/instructionsViewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/extended_information"

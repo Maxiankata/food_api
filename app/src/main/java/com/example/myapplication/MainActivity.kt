@@ -40,13 +40,12 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
             }
-
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.favorite_button1, R.id.information_icon, R.id.theme_moon, R.id.theme_sun),
+            setOf(R.id.favorite_button1, R.id.home_fragment, R.id.theme_moon, R.id.theme_sun),
             drawerLayout
         )
         sharedPreferences = getSharedPreferences("MODE",Context.MODE_PRIVATE)
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         val moonMenuItem: MenuItem = menu.findItem(R.id.theme_moon)
         val sunMenuItem: MenuItem = menu.findItem(R.id.theme_sun)
         val favoritesMenuItem: MenuItem = menu.findItem(R.id.favorite_button1)
-        val informationIcon = menu.findItem(R.id.information_icon)
+        val informationIcon = menu.findItem(R.id.home_fragment)
         val informationExtended :MenuItem = menu.findItem(R.id.information_extended)
         val textView = informationExtended.actionView as? TextView
         val isMoonIconVisible = sharedPreferences.getBoolean("moonIconVisible", true)
@@ -102,8 +101,7 @@ class MainActivity : AppCompatActivity() {
         favoritesMenuItem.apply {
             setOnMenuItemClickListener{
                 val navController = findNavController(R.id.nav_host_fragment_content_main)
-                navController.navigate(R.id.fragmentFavoritesInflater)
-
+                navController.navigate(R.id.fragmentFavorites)
                 true
             }
 

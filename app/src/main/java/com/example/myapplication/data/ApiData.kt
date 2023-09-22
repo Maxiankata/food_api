@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 //data class ApiResponse(
 //    @SerializedName("recipes") val randomResponse: List<FoodFullInformation>
 //){
+
+
     data class FoodFullInformation(
         @SerializedName("id") val id: Int,
         @SerializedName("title") val title: String? = null,
@@ -32,6 +34,37 @@ data class Food(
     @SerializedName("image") val image: String? = null,
     @SerializedName("imageType") val imageType: String? = null
 )
+
+data class IngredientResponse(
+    @SerializedName("id") val id:Int,
+    @SerializedName("title") val title: String?,
+    @SerializedName("image") val image: String?
+    )
+data class NutritionRequest(
+    @SerializedName("id") val id:Int?,
+    @SerializedName("title") val title: String?,
+    @SerializedName("image") val image: String?,
+    @SerializedName("minCarbs") val minCarbs:Int?,
+    @SerializedName("maxCarbs") val maxCarbs:Int?,
+    @SerializedName("minProtein") val minProtein:Int?,
+    @SerializedName("maxProtein") val maxProtein:Int?,
+    @SerializedName("minCalories") val minCalories:Int?,
+    @SerializedName("maxCalories") val maxCalories:Int?,
+    @SerializedName("minFat") val minFat:Int?,
+    @SerializedName("maxFat") val maxFat:Int?
+    )
+data class NutritionResponse(
+
+    @SerializedName("id") val id:Int,
+    @SerializedName("title") val title: String?,
+    @SerializedName("image") val image: String?,
+    @SerializedName("calories")val calories: Int,
+    @SerializedName("carbs")val carbs: Int,
+    @SerializedName("fat")val fats: Int,
+    @SerializedName("protein")val protein: Int,
+)
+
+
 data class RecipeResponse(
     @SerializedName("results") val results: List<Food?> = emptyList(),
     @SerializedName("offset") val offset: Int? = 0,

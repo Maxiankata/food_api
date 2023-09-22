@@ -8,9 +8,15 @@ import androidx.fragment.app.Fragment
 
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.databinding.FragmentFavoritesBinding
 
 
 class FragmentFavorites : Fragment() {
+
+
+    private var _binding: FragmentFavoritesBinding? = null
+    private val binding get() = _binding!!
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

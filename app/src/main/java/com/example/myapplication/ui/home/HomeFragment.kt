@@ -51,17 +51,15 @@ class HomeFragment : Fragment() {
                 setExplicableRoundedCorners(80f, 0f, 0f, 0f)
                 setOnClickListener {
 
-                        findNavController().navigate(R.id.searchInflater)
+                        findNavController().navigate(R.id.IngredientSearch)
 
                 }
             }
 
             dishSearch.apply {
                 setExplicableRoundedCorners(0f, 80f, 0f, 0f)
-
                 setOnClickListener {
-
-                        findNavController().navigate(R.id.dishInflater)
+                        findNavController().navigate(R.id.fragmentDishName)
 
                 }
             }
@@ -69,7 +67,7 @@ class HomeFragment : Fragment() {
 
                 setExplicableRoundedCorners(0f, 0f, 0f, 80f)
                 setOnClickListener {
-                    findNavController().navigate(R.id.fragmentFavoritesInflater)
+                    findNavController().navigate(R.id.action_home_fragment_to_fragmentNutrientSearch)
 
 
                 }
@@ -77,7 +75,7 @@ class HomeFragment : Fragment() {
             weeklyRecommended.apply {
                 setExplicableRoundedCorners(0f, 0f, 80f, 0f)
                 setOnClickListener {
-                    findNavController().navigate(R.id.action_information_icon_to_fragmentWeekly) }
+                    findNavController().navigate(R.id.action_home_fragment_to_fragmentWeekly) }
 
             }
         }

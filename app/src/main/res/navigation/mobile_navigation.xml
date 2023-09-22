@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/information_icon">
+    app:startDestination="@+id/home_fragment">
 
     <fragment
-        android:id="@+id/information_icon"
+        android:id="@+id/home_fragment"
         android:name="com.example.myapplication.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
@@ -26,8 +26,11 @@
             android:id="@+id/action_Home_to_blahblah"
             app:destination="@id/blahblah" />
         <action
-            android:id="@+id/action_information_icon_to_fragmentWeekly"
+            android:id="@+id/action_home_fragment_to_fragmentWeekly"
             app:destination="@id/fragmentWeekly" />
+        <action
+            android:id="@+id/action_home_fragment_to_fragmentNutrientSearch"
+            app:destination="@id/fragmentNutrientSearch" />
 
     </fragment>
 
@@ -42,13 +45,13 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentDishName"
-        android:name="com.example.myapplication.FragmentDishName"
-        android:label="fragment_dish_name"
+        android:name="com.example.myapplication.ui.dish_name.FragmentDishName"
+        android:label="@string/dish_name"
         tools:layout="@layout/fragment_dish_name" />
     <fragment
         android:id="@+id/fragmentNutrientSearch"
         android:name="com.example.myapplication.ui.nutrients.FragmentNutrientSearch"
-        android:label="@string/favorites"
+        android:label="@string/nutrients"
         tools:layout="@layout/fragment_nutrient_search" />
     <fragment
         android:id="@+id/fragmentFavorites"

@@ -1,11 +1,10 @@
-package com.example.myapplication
+package com.example.myapplication.adapters
 
-import com.example.myapplication.adapters.Adapter
 import com.example.myapplication.data.Food
 import com.example.myapplication.data.FrontFood
 
 
-class FoodAdapter : Adapter<Food, FrontFood> {
+class FoodToFrontFoodAdapter : Adapter<Food, FrontFood> {
     override fun adapt(t: Food): FrontFood? {
         return FrontFood(t.id, t.title!!, t.image!!)
     }

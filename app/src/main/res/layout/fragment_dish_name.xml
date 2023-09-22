@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".FragmentDishName"
+    tools:context=".ui.dish_name.FragmentDishName"
     style="@style/ScreenBackground">
         <View
             android:layout_width="match_parent"
@@ -28,25 +28,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/image_scroller"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginVertical="30dp"
-            android:layout_height="wrap_content"
-            android:hint="Search"
-            style="@style/StrongColor"
-            >
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:inputType="text"
-                android:gravity="top"
-                android:drawablePadding="8dp" />
-        </com.google.android.material.textfield.TextInputLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/text_input"
+        app:layout_constraintEnd_toEndOf="@id/text_input"
+        app:layout_constraintTop_toBottomOf="@id/text_input">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            />
+    </ScrollView>
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/text_input"
+        style="@style/StrongColor"
+        app:layout_constraintTop_toBottomOf="@id/image_scroller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="30dp"
+        android:gravity="top"
+        android:hint="Search"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/text_prediction_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SearchMenuBackground"
+        app:layout_constraintStart_toStartOf="@id/text_input"
+        app:layout_constraintTop_toBottomOf="@id/text_input" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
