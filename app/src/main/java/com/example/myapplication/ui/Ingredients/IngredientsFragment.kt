@@ -64,15 +64,16 @@ class IngredientsFragment : Fragment() {
             val itemAdapter = OptionRecyclerAdapter().apply {
                 itemClickListener = object : ItemClickListener<FrontFood> {
                     override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-                        findNavController().navigate(R.id.blahblah, bundleOf("recipe_id" to id))
+                        Log.d("SENDING ID", item.id.toString())
+                        findNavController().navigate(R.id.action_IngredientSearch_to_blahblah, bundleOf("recipe_id" to item.id))
                     }
                 }
             }
+            ingredientsViewModel._foods.observe(viewLifecycleOwner){
 
+            }
             binding.apply {
-                imageScroller.apply {
-                    RoundedCorners(20F)
-                }
+
                 textPredictionRecycler.apply {
                     layoutManager = LinearLayoutManager(context)
                     adapter = textPredictionAdapter

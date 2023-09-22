@@ -6,8 +6,9 @@ import com.example.myapplication.data.FrontFood
 import com.example.myapplication.data.RecipeResponse
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.adapters.TextPredictionAdapterAdapter
-import com.example.myapplication.data.FullInformationRecipe
-import com.example.myapplication.data.RandomResponse
+import com.example.myapplication.data.FoodFullInformation
+import com.example.myapplication.data.Response.FullInformationRecipe
+//import com.example.myapplication.data.ApiResponse
 import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
@@ -51,19 +52,19 @@ class RetrofitFoodApiService : FoodApiService{
 
 
     override suspend fun getFoodByComplexSearch(query: String): List<FrontFood> = foodApi.getItems(API_KEY, query).results.mapNotNull { adapter.adapt(it!!) }
-    override suspend fun getRandomRecipe(): FullInformationRecipe = fullInformationAdapter.adapt(foodApi.getRandomRecipe(API_KEY).first().randomResponse.first())!!
+    override suspend fun getRandomRecipe(): FullInformationRecipe = fullInformationAdapter.adapt(foodApi.getRandomRecipe(API_KEY).first())!!
     override suspend fun getPrediction(query: String): List<TextPredictor> = foodApi.getPredictionText(API_KEY, query).mapNotNull { predictionAdapter.adapt(it) }
 
-    override suspend fun getRecipeById(id:Int): FullInformationRecipe = fullInformationAdapter.adapt(foodApi.getRecipeById(id, API_KEY).first().randomResponse.first())!!.also { Log.d("SPAS", it.toString()) }
+    override suspend fun getRecipeById(id:Int): FullInformationRecipe = fullInformationAdapter.adapt(foodApi.getRecipeById(id, API_KEY))!!.also { Log.d("SPAS", it.toString()) }
 
 }
 interface FoodApi {
     @GET("complexSearch")
-    suspend fun getItems(@Query("apiKey") apiKey: String, @Query("query") query: String, @Query("number") number: Int = 5): RecipeResponse
+    suspend fun getItems(@Query("apiKey") apiKey: String, @Query("query") query: String, @Query("number") number: Int = 1): RecipeResponse
     @GET("random")
-    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): ArrayList<RandomResponse>
+    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): ArrayList<FoodFullInformation>
     @GET("autocomplete")
     suspend fun getPredictionText(@Query("apiKey") apiKey: String, @Query("query") query: String, @Query("number") number: Int = 5): List<TextPredictorJsonStealer>
     @GET("{id}/information")
-    suspend fun getRecipeById(@Path("id") id:Int, @Query("apiKey") apiKey: String):List<RandomResponse>
+    suspend fun getRecipeById(@Path("id") id:Int, @Query("apiKey") apiKey: String):FoodFullInformation
 }

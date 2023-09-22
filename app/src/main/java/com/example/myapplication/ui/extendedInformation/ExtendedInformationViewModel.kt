@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.data.FullInformationRecipe
+import com.example.myapplication.data.Response.FullInformationRecipe
 import com.example.myapplication.getApiService
 import kotlinx.coroutines.launch
 
