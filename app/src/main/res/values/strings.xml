@@ -18,6 +18,7 @@
     <string name="recipe_search">Recipe Search</string>
     <string name="recipe_information">Recipe Information</string>
     <string name="fragment_weekly">Weekly Recipes :)</string>
+    <string name="recipe_name">Name:</string>
 
 
     <string name="extended_information">This is an app created by me :) for the purpose of devcamp i shall rush it uwuwuwuwu</string>

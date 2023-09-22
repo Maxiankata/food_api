@@ -34,31 +34,67 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/imageView"
-        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintStart_toEndOf="@id/dairyText"
         android:text="@string/dairyFree"
         android:textSize="20sp"
         />
 
     <TextView
+        android:id="@+id/dairyText"
+        style="@style/TextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/dairyFree"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@id/imageView" />
+
+    <TextView
+        android:id="@+id/glutenText"
+        style="@style/TextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/glutenFree"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/dairyText"
+        app:layout_constraintTop_toBottomOf="@+id/dairyTag" />
+
+    <TextView
         android:id="@+id/glutenTag"
         style="@style/TextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="@string/glutenFree"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/dairyTag"
+        app:layout_constraintStart_toEndOf="@+id/glutenText"
         app:layout_constraintTop_toBottomOf="@+id/dairyTag" />
 
     <TextView
+        android:id="@+id/veganText"
+        style="@style/TextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:text="@string/vegan"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/glutenText"
+        app:layout_constraintTop_toBottomOf="@+id/glutenTag" />
+
+    <TextView
         android:id="@+id/veganTag"
         style="@style/TextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/vegan"
+        android:layout_marginLeft="10dp"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/glutenTag"
+        app:layout_constraintStart_toEndOf="@+id/veganText"
         app:layout_constraintTop_toBottomOf="@+id/glutenTag" />
 
     <TextView
@@ -66,9 +102,19 @@
         style="@style/TextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="@string/readyInMinutes"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/servings"
+        app:layout_constraintStart_toEndOf="@id/readyInMinutesText"
+        app:layout_constraintBottom_toBottomOf="@id/readyInMinutesText" />
+    <TextView
+        android:id="@+id/readyInMinutesText"
+        style="@style/TextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/readyInMinutes"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/servingsText"
         app:layout_constraintTop_toBottomOf="@+id/servings" />
 
     <TextView
@@ -78,6 +124,17 @@
         android:layout_height="wrap_content"
         android:text="@string/recipe_information"
         android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@id/recipeNameText"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    <TextView
+        android:id="@+id/recipeNameText"
+        style="@style/TextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe_name"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -85,11 +142,23 @@
         android:id="@+id/servings"
         style="@style/TextAppearance"
         android:layout_width="0dp"
+        android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/servings"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/veganTag"
+        app:layout_constraintStart_toEndOf="@+id/servingsText"
+        app:layout_constraintTop_toBottomOf="@+id/veganTag" />
+
+    <TextView
+        android:id="@+id/servingsText"
+        style="@style/TextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/servings"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/veganText"
         app:layout_constraintTop_toBottomOf="@+id/veganTag" />
     <ScrollView
         android:id="@+id/ingredientsScroll"

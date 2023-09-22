@@ -1,11 +1,17 @@
 package com.example.myapplication.adapters
 
-import com.example.myapplication.data.FullInformationRecipe
-import com.example.myapplication.data.RandomResponse
+import com.example.myapplication.data.ApiIngredients
+import com.example.myapplication.data.ApiInstructions
+//import com.example.myapplication.data.ApiResponse
+import com.example.myapplication.data.FoodFullInformation
+import com.example.myapplication.data.Response.Steps
+import com.example.myapplication.data.Response.Ingredients
 
-class FullInformationAdapter:Adapter<RandomResponse.Null.FoodFullInformation, FullInformationRecipe> {
-    override fun adapt(t: RandomResponse.Null.FoodFullInformation): FullInformationRecipe? {
-        return if (t.title == null ||t.vegan==null || t.image == null || t.glutenFree == null || t.dairyFree == null || t.readyInMinutes == null || t.servings == null || t.analyzedInstructions == null || t.ingredients == null) {
+import com.example.myapplication.data.Response.FullInformationRecipe
+
+class FullInformationAdapter:Adapter<FoodFullInformation, FullInformationRecipe> {
+    override fun adapt(t: FoodFullInformation): FullInformationRecipe? {
+        return if (t.title == null ||t.vegan==null || t.image == null || t.glutenFree == null || t.dairyFree == null || t.readyInMinutes == null || t.servings == null || t.instructions == null || t.ingredients == null) {
             null
         } else {
             return FullInformationRecipe(
@@ -17,26 +23,24 @@ class FullInformationAdapter:Adapter<RandomResponse.Null.FoodFullInformation, Fu
                 dairyFree = t.dairyFree,
                 readyInMinutes = t.readyInMinutes,
                 servings = t.servings,
-                analyzedInstructions = adaptInstructions(t.analyzedInstructions),
+                analyzedInstructions = adaptInstructions(t.instructions),
                 ingredients = adaptIngredients(t.ingredients),
-
             )
         }
-
     }
 
-    fun adaptInstructions(instructions: List<RandomResponse.Null.Steps>?): List<FullInformationRecipe.Steps> {
+    private fun adaptInstructions(instructions: List<ApiInstructions>?): List<Steps> {
         return instructions?.map {
-            FullInformationRecipe.Steps(
+            Steps(
                 number = it.number ?: 0,
                 step = it.step ?: ""
             )
         } ?: emptyList()
     }
 
-    fun adaptIngredients(ingredients: List<RandomResponse.Null.Ingredients>?): List<FullInformationRecipe.Ingredients> {
+    private fun adaptIngredients(ingredients: List<ApiIngredients>?): List<Ingredients> {
         return ingredients?.map {
-            FullInformationRecipe.Ingredients(
+            Ingredients(
                 name = it.name
             )
         } ?: emptyList()
