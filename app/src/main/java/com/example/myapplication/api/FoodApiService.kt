@@ -1,11 +1,8 @@
 package com.example.myapplication.api
 
 import com.example.myapplication.data.FrontFood
-import com.example.myapplication.data.ApiRandomTrivia
 import com.example.myapplication.data.Response.FullInformationRecipe
-//import com.example.myapplication.data.Steps
 import com.example.myapplication.data.TextPredictor
-import kotlinx.coroutines.flow.Flow
 
 interface FoodApiService {
     suspend fun getFoodByComplexSearch(query: String): List<FrontFood>

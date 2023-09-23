@@ -31,9 +31,9 @@ class RetrofitFoodApiService : FoodApiService {
 
     companion object {
 //        const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a"
-        const val API_KEY = "12e762759f344271b7abc1a4da9400e8"
+//        const val API_KEY = "12e762759f344271b7abc1a4da9400e8" //ended for today
 //        const val API_KEY = "0e0a2be67fe14660b09c10952fe86678" //ended for today
-
+        const val API_KEY = "39e85332726b4ce7a97b9130ee77b9ac"
         const val API_HOST = "https://api.spoonacular.com/"
 
         private var apiSingleton: RetrofitFoodApiService? = null

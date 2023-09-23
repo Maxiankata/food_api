@@ -54,63 +54,22 @@ class FragmentFavorites : Fragment() {
         favoritesViewModel = ViewModelProvider(this)[FavoritesViewModel::class.java]
         favoritesViewModel.getDatabaseEntries()
         (activity as? MainActivity)?.setFabVisibility(View.GONE)
-        val foodDatabase = MainActivity.getDatabaseInstance()
-        val foodBase = foodDatabase.dao()
-
         val itemAdapter = OptionRecyclerAdapter().apply {
             itemClickListener = object : ItemClickListener<FrontFood> {
                 override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-                    Log.d("SENDING ID", item.id.toString())
-                    findNavController().navigate(R.id.action_fragmentFavorites_to_blahblah, bundleOf("recipe_id" to item.id))
+                    findNavController().navigate(
+                        R.id.action_fragmentFavorites_to_blahblah,
+                        bundleOf("recipe_id" to item.id)
+                    )
                 }
             }
         }
-//        binding.itemRecyclerView.setRoundedCorners(20F)
         binding.itemRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         binding.itemRecyclerView.adapter = itemAdapter
-
-
         reverseRoomAdapter = RoomToFullFrontFoodAdapter()
-
-//        var existScope : List<FrontFood>
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            var roomInfoList = foodBase.getAllFoods().mapNotNull { reverseRoomAdapter.adapt(it) }
-//            existScope = roomInfoList
-//            Log.d("MAYBE", existScope.toString())
-//            binding.apply {
-//                itemAdapter.updateItems(existScope)
-//            }
-//        }
-        Log.d("SHIT", favoritesViewModel.foodListLiveData.toString())
-
         favoritesViewModel.foodListLiveData.observe(viewLifecycleOwner, Observer { foodList ->
-            Log.d("SHIT", foodList.toString())
-            Log.d("SHIT", "Food list size: ${foodList.size}")
-
             itemAdapter.updateItems(foodList)
         })
-
-
-//        Log.d("DATABASE RECIEVED", favoritesViewModel.foodList.toString())
-
-//        favoritesViewModel.foods.observe(viewLifecycleOwner){
-//            Log.d("SHIT", favoritesViewModel.foods.toString())
-//
-//            binding.apply {
-//                itemAdapter.updateItems(it)
-//            }
-//        }
-
-
-        }
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            val foodRoomInfoList = foodBase.getAllFoods()
-//            val frontFoodList = foodRoomInfoList.mapNotNull { reverseRoomAdapter.adapt(it) }
-//
-//            Log.d("FOOD REBASED", frontFoodList.toString())
-//
-//        }
-
     }
+}
 

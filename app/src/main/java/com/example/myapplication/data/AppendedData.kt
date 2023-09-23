@@ -47,10 +47,6 @@ data class Response(
         }
     }
 }
-
-
-
-
 data class TextPredictor(
     var id: Int,
     var name: String
