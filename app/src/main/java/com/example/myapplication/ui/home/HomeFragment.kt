@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
             homeViewModel.trivia.observe(viewLifecycleOwner){
                 Log.d("TRIVIA RECIEVED", it)
-                binding.trivia.text = "$it :O"
+//                binding.trivia.text = "$it :O"
             }
 
             imageScroller.apply {

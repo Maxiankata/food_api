@@ -46,7 +46,11 @@
         android:id="@+id/fragmentFavorites"
         android:name="com.example.myapplication.ui.favorites.FragmentFavorites"
         android:label="@string/favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_fragmentFavorites_to_blahblah"
+            app:destination="@id/blahblah" />
+    </fragment>
     <fragment
         android:id="@+id/blahblah"
         android:name="com.example.myapplication.ui.extendedInformation.FragmentExtendedInformation"
