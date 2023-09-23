@@ -39,7 +39,6 @@ class HomeFragment : Fragment() {
         binding.apply {
 
             homeViewModel.trivia.observe(viewLifecycleOwner){
-                Log.d("TRIVIA RECIEVED", it)
 //                binding.trivia.text = "$it :O"
             }
 
