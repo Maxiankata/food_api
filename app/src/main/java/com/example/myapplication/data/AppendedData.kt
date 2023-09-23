@@ -15,32 +15,34 @@ data class FoodItem(
 data class FrontFood(
     val id: Int,
     val title: String,
-    val imageUrl: String,
+    val image: String,
 )
 
 data class Response(
     var response: List<FullInformationRecipe>
-){
-data class FullInformationRecipe(
-    val id: Int,
-    val title: String? = null,
-    val image: String? = null,
-    val readyInMinutes: Int? = null,
-    val dairyFree: Boolean? = null,
-    val glutenFree: Boolean? = null,
-    val vegan: Boolean? = null,
-    val servings: String? = null,
-    val analyzedInstructions: List<Steps>,
-    val ingredients: List<Ingredients>
-)
-data class Ingredients(
-    val name: String? = null,
-)
-data class Steps(
-    val number: Int? = null,
-    val step: String? = null
-)
+) {
+    data class FullInformationRecipe(
+        val id: Int,
+        val title: String? = null,
+        val image: String? = null,
+        val readyInMinutes: Int? = null,
+        val dairyFree: Boolean? = null,
+        val glutenFree: Boolean? = null,
+        val vegan: Boolean? = null,
+        val servings: String? = null,
+        val ingredients: List<Ingredients>? = emptyList(),
+        val instructions: List<Steps>? = emptyList()
+    ) {
+        data class Ingredients(
+            val name: String? = null,
+        )
+        data class Steps(
+            val number: Int,
+            val step: String
+        )
+    }
 }
+
 data class TextPredictor(
     var id: Int,
     var name: String

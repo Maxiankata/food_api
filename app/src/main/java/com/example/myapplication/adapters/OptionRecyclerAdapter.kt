@@ -27,7 +27,7 @@ class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRe
 
         fun bind(frontFood: FrontFood) {
             Glide.with(recyclerImage)
-                .load(frontFood.imageUrl)
+                .load(frontFood.image)
                 .into(recyclerImage)
             recyclerImage.setExplicableRoundedCorners(40F, 10F, 40F, 10F)
 //            Glide.with(image).load(frontFood.imageUrl).into(image)
