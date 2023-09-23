@@ -1,4 +1,4 @@
-package com.example.myapplication.adapters
+package com.example.myapplication.ui.Ingredients
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
+import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.setRoundedCorners
 
-class   IngredientsAdapter(): RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
+class   IngredientsViewPagerAdapter(): RecyclerView.Adapter<IngredientsViewPagerAdapter.IngredientsViewHolder>() {
     private val items = ArrayList<FrontFood>()
     var itemClickListener: ItemClickListener<FrontFood>? = null
 
@@ -38,7 +39,7 @@ class   IngredientsAdapter(): RecyclerView.Adapter<IngredientsAdapter.Ingredient
         fun bind(food: FrontFood) {
             Glide.with(image).load(food.image).into(image)
             container.setRoundedCorners(30F)
-//            recipeName.text = food.title
+            recipeName.text = food.title
         }
     }
 }

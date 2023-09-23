@@ -160,55 +160,51 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/veganText"
         app:layout_constraintTop_toBottomOf="@+id/veganTag" />
-    <ScrollView
-        android:id="@+id/ingredientsScroll"
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/ingredientsViewPager"
         style="@style/StrongColor"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintTop_toBottomOf="@id/view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/recipeScroll"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintVertical_weight="1"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/extended_information"
-            />
-    </ScrollView>
-    <ScrollView
-        android:id="@+id/recipeScroll"
-        style="@style/StrongColor"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintTop_toBottomOf="@id/view"
-        app:layout_constraintStart_toEndOf="@id/ingredientsScroll"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="10dp"
+        android:adjustViewBounds="true"
+        android:text="@string/extended_information"
+        app:layout_constraintBottom_toTopOf="@id/instructionsViewPager"
         app:layout_constraintEnd_toEndOf="parent"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/extended_information"
-            />
-    </ScrollView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"></androidx.viewpager2.widget.ViewPager2>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/instructionsViewPager"
+        style="@style/StrongColor"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="10dp"
+        android:adjustViewBounds="true"
+        android:text="@string/extended_information"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ingredientsViewPager" />
+
     <LinearLayout
         android:id="@+id/star_layout"
-        android:layout_margin="20dp"
-        android:padding="10dp"
         style="@style/StrongColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
 
-        ><ImageButton
-        android:id="@+id/favorite_button"
-        style="@style/StrongColor"
-        android:background="@drawable/baseline_star_24"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/></LinearLayout>
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView">
+
+        >
+
+        <ImageButton
+            android:id="@+id/favorite_button"
+            style="@style/StrongColor"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/baseline_star_24" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

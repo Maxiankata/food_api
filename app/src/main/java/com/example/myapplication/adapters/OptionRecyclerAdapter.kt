@@ -64,7 +64,7 @@ class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRe
         }).dispatchUpdatesTo(this)
     }
     override fun getItemCount(): Int {
-       return items.size
+        return items.size
     }
 }
 
