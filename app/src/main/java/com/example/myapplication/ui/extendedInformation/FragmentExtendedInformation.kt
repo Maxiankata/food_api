@@ -10,13 +10,22 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
+import com.example.myapplication.MyApplication
 import com.example.myapplication.RoundedCorners
 import com.example.myapplication.databinding.FragmentExtendedInformationBinding
+import com.example.myapplication.room.FoodDB
+import com.example.myapplication.room.FoodDao
+import com.example.myapplication.room.FoodRoomInfo
+import com.example.myapplication.room.FullInformationToRoomAdapter
+import com.example.myapplication.room.RoomToFullInformationAdapter
 import com.example.myapplication.setRoundedCorners
 import com.example.myapplication.ui.IngredientsFragment.RecipeContainerAdapter
 import com.example.myapplication.ui.ingredientsInformation.IngredientsViewPagerAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class FragmentExtendedInformation : Fragment() {
@@ -25,6 +34,10 @@ class FragmentExtendedInformation : Fragment() {
     lateinit var recipeContainerAdapter: RecipeContainerAdapter
     lateinit var instructionViewPagerAdapter: InstructionViewPagerAdapter
     lateinit var ingredientsViewPagerAdapter:IngredientsViewPagerAdapter
+    lateinit var roomAdapter: FullInformationToRoomAdapter
+    lateinit var otherRoomAdapter: RoomToFullInformationAdapter
+
+
 
     private val informationViewModel: ExtendedInformationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +54,21 @@ class FragmentExtendedInformation : Fragment() {
         return binding.root
     }
 
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setFabVisibility(VISIBLE)
         recipeContainerAdapter = RecipeContainerAdapter()
         instructionViewPagerAdapter = InstructionViewPagerAdapter()
         ingredientsViewPagerAdapter = IngredientsViewPagerAdapter()
+
+        val foodDatabase = MainActivity.getDatabaseInstance()
+        val foodBase = foodDatabase.dao()
+
+
+        roomAdapter = FullInformationToRoomAdapter()
 
         binding.ingredientsViewPager.adapter = recipeContainerAdapter
         binding.instructionsViewPager.adapter = instructionViewPagerAdapter
@@ -65,6 +87,18 @@ class FragmentExtendedInformation : Fragment() {
                 ingredientsViewPager.setRoundedCorners(20F)
                 instructionsViewPager.setRoundedCorners(20F)
 
+                favoriteButton.setOnClickListener {
+                    starLayoutChecked.visibility = VISIBLE
+                    starLayout.visibility = GONE
+                    val foodRoomInfo = roomAdapter.adapt(recipe)
+                    foodRoomInfo?.let {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            Log.d("FOODBASED", foodRoomInfo.toString())
+                            foodBase.saveFood(it)
+                        }
+                    }
+                }
+
             }
 
 
@@ -80,8 +114,8 @@ class FragmentExtendedInformation : Fragment() {
             favoriteButton.apply {
 
                 setOnClickListener{
-                    starLayoutChecked.visibility = VISIBLE
-                    starLayout.visibility = GONE
+
+
                 }
             }
             starLayoutChecked.setRoundedCorners(120F)
