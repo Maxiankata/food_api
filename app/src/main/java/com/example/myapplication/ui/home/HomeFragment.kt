@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
             homeViewModel.recipe.observe(viewLifecycleOwner){
                 binding.funfact.text = it.title
                 Glide.with(requireContext())
-                    .load(it.imageUrl)
+                    .load(it.image)
                     .into(binding.imageScroller)
             }
 
