@@ -24,7 +24,6 @@ class ViewModelWeekly(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             val result = _api.getRandomRecipe()
             _foods.postValue(result)
-            Log.d("SENDING RANDOM", result.toString())
         }
     }
 }

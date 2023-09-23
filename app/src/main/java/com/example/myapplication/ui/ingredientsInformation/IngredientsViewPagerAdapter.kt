@@ -50,8 +50,6 @@ class IngredientsViewPagerAdapter :
 
         fun bind(ingredients: Response.FullInformationRecipe.Ingredients) {
             ingredient.text = ingredients.name.toString()
-            Log.d("BINDING INGREDIENT", ingredient.toString())
-
         }
     }
 
@@ -67,14 +65,11 @@ class IngredientsViewPagerAdapter :
 
     override fun onBindViewHolder(holder: IngredientsPagerViewHolder, position: Int) {
         holder.bind(items[position])
-        Log.d("BINDING INGREDIENT", items.toString())
-
     }
 
     fun updateItems(newIngredients: List<Response.FullInformationRecipe.Ingredients>?) {
         items.clear()
         items.addAll(newIngredients!!)
-        Log.d("UPDATING INGREDIENT", items.toString())
         notifyDataSetChanged()
     }
 }
