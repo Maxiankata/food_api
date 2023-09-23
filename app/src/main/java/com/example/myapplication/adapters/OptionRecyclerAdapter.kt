@@ -49,19 +49,20 @@ class OptionRecyclerAdapter: RecyclerView.Adapter<OptionRecyclerAdapter.OptionRe
 
         items.clear()
         items.addAll(newItems)
-        DiffUtil.calculateDiff(object : DiffUtil.Callback() {
-            override fun getOldListSize(): Int = oldList.size
-
-            override fun getNewListSize(): Int = newItems.size
-
-            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return oldList[oldItemPosition].id == newItems[newItemPosition].id
-            }
-
-            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return oldList[oldItemPosition] == newItems[newItemPosition]
-            }
-        }).dispatchUpdatesTo(this)
+        notifyDataSetChanged()
+//        DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+//            override fun getOldListSize(): Int = oldList.size
+//
+//            override fun getNewListSize(): Int = newItems.size
+//
+//            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+//                return oldList[oldItemPosition].id == newItems[newItemPosition].id
+//            }
+//
+//            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+//                return oldList[oldItemPosition] == newItems[newItemPosition]
+//            }
+//        }).dispatchUpdatesTo(this)
     }
     override fun getItemCount(): Int {
         return items.size
