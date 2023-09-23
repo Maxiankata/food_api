@@ -2,10 +2,9 @@ package com.example.myapplication.data
 
 import com.google.gson.annotations.SerializedName
 @kotlinx.serialization.Serializable
-//data class ApiResponse(
-//    @SerializedName("recipes") val randomResponse: List<FoodFullInformation>
-//){
-
+data class ApiRandomTrivia(
+    @SerializedName("text") val text:String? = null
+)
 
 data class FoodFullInformation(
     @SerializedName("id") val id: Int,
@@ -74,6 +73,11 @@ data class RecipeResponse(
     @SerializedName("number") val number: Int? = 0,
     @SerializedName("totalResults") val totalResults: Int? = 0
 )
+data class RandomResponse(
+    @SerializedName("recipes") val results: List<Food?> = emptyList(),
+
+)
+
 @kotlinx.serialization.Serializable
 data class TextPredictorJsonStealer(
     @SerializedName("id") val id: Int,
