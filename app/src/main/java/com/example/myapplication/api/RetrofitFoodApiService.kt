@@ -16,6 +16,8 @@ import com.example.myapplication.data.IngredientResponse
 //import com.example.myapplication.data.Response.Steps
 import com.example.myapplication.data.Response.FullInformationRecipe
 import com.example.myapplication.data.FoodFullInformation.ApiInstructions
+
+
 import com.example.myapplication.data.Steps
 //import com.example.myapplication.data.ApiResponse
 import com.example.myapplication.data.TextPredictorJsonStealer
@@ -32,8 +34,8 @@ class RetrofitFoodApiService : FoodApiService {
 
     companion object {
 //        const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a"
-        const val API_KEY = "12e762759f344271b7abc1a4da9400e8"
-//        const val API_KEY = "0e0a2be67fe14660b09c10952fe86678"
+//        const val API_KEY = "12e762759f344271b7abc1a4da9400e8"
+        const val API_KEY = "0e0a2be67fe14660b09c10952fe86678"
 
         const val API_HOST = "https://api.spoonacular.com/recipes/"
 
@@ -76,8 +78,10 @@ class RetrofitFoodApiService : FoodApiService {
     override suspend fun getFoodByComplexSearch(query: String): List<FrontFood> =
         foodApi.getFoodByComplexSearch(API_KEY, query).results.mapNotNull { adapter.adapt(it!!) }
 
-    override suspend fun getRandomRecipe(): FullInformationRecipe =
-        fullInformationAdapter.adapt(foodApi.getRandomRecipe(API_KEY))!!
+    override suspend fun getRandomRecipe(): FullInformationRecipe? = fullInformationAdapter.adapt(
+        foodApi.getRandomRecipe(
+            API_KEY).first()
+    )
 
     override suspend fun getPrediction(query: String): List<TextPredictor> =
         foodApi.getPredictionText(API_KEY, query).mapNotNull { predictionAdapter.adapt(it) }
@@ -112,14 +116,12 @@ interface FoodApi {
     suspend fun getFoodByComplexSearch(
         @Query("apiKey") apiKey: String,
         @Query("query") query: String,
-        @Query("number") number: Int = 1
+        @Query("number") number: Int = 6
     ): RecipeResponse
 
-    @GET("random")
-    suspend fun getRandomRecipe(
-        @Query("apiKey") apiKey: String,
-        @Query("number") number: Int = 1
-    ): FoodFullInformation
+    @GET("recipes/random")
+    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): List<FoodFullInformation>
+
 
     @GET("autocomplete")
     suspend fun getPredictionText(
@@ -149,21 +151,19 @@ interface FoodApi {
 
 
 
-//    @GET("findByNutrients")
-//    suspend fun findByNutrients(
-//        @Query("apiKey") apiKey: String,
-//        @Query("number") number: Int = 1,
-//        @Query("minCarbs") minCarbs: Int?,
-//        @Query("maxCarbs") maxCarbs: Int?,
-//        @Query("minFat") minFat: Int?,
-//        @Query("maxFat") maxFat: Int?,
-//        @Query("minCalories") minCalories:Int?,
-//        @Query("maxCalories") maxCalories:Int?,
-//        @Query("minProtein") minProtein:Int?,
-//        @Query("maxProtein") maxProtein:Int?
-//
-//
-//        ): RecipeResponse
+    @GET("recipes/findByNutrients")
+    suspend fun findByNutrients(
+        @Query("apiKey") apiKey: String,
+        @Query("number") number: Int = 1,
+        @Query("minCarbs") minCarbs: Int?,
+        @Query("maxCarbs") maxCarbs: Int?,
+        @Query("minFat") minFat: Int?,
+        @Query("maxFat") maxFat: Int?,
+        @Query("minCalories") minCalories:Int?,
+        @Query("maxCalories") maxCalories:Int?,
+        @Query("minProtein") minProtein:Int?,
+        @Query("maxProtein") maxProtein:Int?
+        ): List<Food>
 
 }
 

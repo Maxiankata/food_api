@@ -33,9 +33,6 @@ data class FoodFullInformation(
     }
 }
 
-
-
-//}
 data class Food(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String? = null,
