@@ -7,11 +7,7 @@ import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.Ingredients
 import com.example.myapplication.data.Instructions
 import com.example.myapplication.data.Response
-//import com.example.myapplication.data.Response.FullInformationRecipe.Filler.Steps
 
-
-//import com.example.myapplication.data.Response.FullInformationRecipe.Ingredients
-import com.example.myapplication.data.Steps
 
 class FullInformationAdapter:Adapter<FoodFullInformation, Response.FullInformationRecipe> {
     override fun adapt(t: FoodFullInformation): Response.FullInformationRecipe? {

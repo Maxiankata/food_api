@@ -4,10 +4,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.Response
 import com.example.myapplication.data.Steps
-
-//import com.example.myapplication.data.Response.Steps
 
 class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAdapter.InstructionPagerViewHolder>() {
     class InstructionPagerViewHolder (view: View): RecyclerView.ViewHolder(view){
