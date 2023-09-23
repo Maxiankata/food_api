@@ -60,7 +60,6 @@ class DishFragment : Fragment() {
         val itemAdapter = OptionRecyclerAdapter().apply {
             itemClickListener = object : ItemClickListener<FrontFood> {
                 override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-                    Log.d("SENDING ID", item.id.toString())
                     findNavController().navigate(R.id.action_IngredientSearch_to_blahblah, bundleOf("recipe_id" to item.id))
                 }
             }
@@ -97,21 +96,16 @@ class DishFragment : Fragment() {
                         if (button.visibility == VISIBLE) {
                             query?.let {
                                 dishViewModel.fetchFood(query)
-                                Log.d("FOUND INGREDIENTS LOL", query.toString())
                             }
                             textPredictionRecycler.visibility = GONE
-
                         }else{
                             query?.let {
-                                Log.d("FETCHING FOOD: ", dishViewModel.fetchIngredients(query).toString())
                                 dishViewModel.fetchIngredients(query)
-                                Log.d("FOUND INGREDIENTS LOL", query.toString())
                             }
                             textPredictionRecycler.visibility = GONE
                         }
                         return true
                     }
-
                     override fun onQueryTextChange(query: String?): Boolean {
 
                             query?.let {
@@ -127,10 +121,8 @@ class DishFragment : Fragment() {
             }
         }
         dishViewModel.autoCompleteText.observe(viewLifecycleOwner){
-            Log.d("AutoCompleteData", it.toString())
             binding.apply {
                 textPredictionAdapter.updateItems(it as ArrayList<TextPredictor>)
-
             }
         }
         dishViewModel.recipes.observe(viewLifecycleOwner){
@@ -138,17 +130,11 @@ class DishFragment : Fragment() {
                 itemAdapter.updateItems(it)
             }
         }
-
-        // Make the fab visible
         (activity as? MainActivity)?.setFabVisibility(GONE)
-
-        // Rest of your code
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
-        // Hide the fab when the fragment is destroyed
         (activity as? MainActivity)?.setFabVisibility(GONE)
     }
 

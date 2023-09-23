@@ -17,7 +17,6 @@ class ExtendedInformationViewModel(application: Application) : AndroidViewModel(
     fun fetchFood(id: Int){
         viewModelScope.launch {
             _foods.postValue(_api.getRecipeById(id))
-            Log.d("FETCH", "FOOD FETCHED")
         }
     }
 

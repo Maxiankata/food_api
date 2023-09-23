@@ -22,7 +22,3 @@ interface FoodDao {
     fun orderFoodByNameDesc(): LiveData<List<FoodRoomInfo>>
 }
 
-data class DaoFunctions(
-    val foods:List<FoodRoomInfo> = emptyList(),
-
-    )

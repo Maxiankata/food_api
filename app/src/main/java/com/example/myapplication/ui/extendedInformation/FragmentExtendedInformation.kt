@@ -59,13 +59,9 @@ class FragmentExtendedInformation : Fragment() {
 
         instructionViewPagerAdapter = InstructionViewPagerAdapter()
         ingredientsViewPagerAdapter = IngredientsViewPagerAdapter()
-
         otherRoomAdapter = RoomToFullFrontFoodAdapter()
-
         val foodDatabase = MainActivity.getDatabaseInstance()
         val foodBase = foodDatabase.dao()
-
-        val roomToFullFrontFoodAdapter = RoomToFullFrontFoodAdapter()
         roomAdapter = FullInformationToRoomAdapter()
 
         binding.ingredientsViewPager.adapter = ingredientsViewPagerAdapter
@@ -93,7 +89,6 @@ class FragmentExtendedInformation : Fragment() {
                     val foodRoomInfo = roomAdapter.adapt(recipe)
                     foodRoomInfo?.let {
                         lifecycleScope.launch(Dispatchers.IO) {
-                            Log.d("FOODBASED", foodRoomInfo.toString())
                             foodBase.saveFood(it)
                         }
                     }
@@ -104,7 +99,6 @@ class FragmentExtendedInformation : Fragment() {
                     val foodRoomInfo = roomAdapter.adapt(recipe)
                     foodRoomInfo?.let {
                         lifecycleScope.launch(Dispatchers.IO) {
-                            Log.d("FOODBASED", foodRoomInfo.toString())
                             foodBase.deleteFood(it)
                         }
                     }
@@ -114,7 +108,6 @@ class FragmentExtendedInformation : Fragment() {
 
 
             ingredientsViewPagerAdapter.updateItems(recipe.ingredients)
-            Log.d("INGREDIENTS", recipe.ingredients.toString())
             instructionViewPagerAdapter.updateItems(recipe.analyzedInstructions)
             Log.d("INSTRUCTIONS", recipe.analyzedInstructions.toString())
 
