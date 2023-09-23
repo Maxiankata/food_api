@@ -14,5 +14,4 @@ class RoomToFullInformationAdapter:Adapter<FoodRoomInfo, Response.FullInformatio
     override fun adapt(t: FoodRoomInfo): Response.FullInformationRecipe? {
         return Response.FullInformationRecipe(t.id, t.name!!, t.image!!)
     }
-
 }

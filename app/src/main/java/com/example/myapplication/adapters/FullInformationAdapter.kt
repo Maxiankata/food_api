@@ -4,8 +4,8 @@ package com.example.myapplication.adapters
 //import com.example.myapplication.data.ApiSteps
 //import com.example.myapplication.data.ApiResponse
 import com.example.myapplication.data.FoodFullInformation
-import com.example.myapplication.data.Ingredients
-import com.example.myapplication.data.Instructions
+//import com.example.myapplication.data.Ingredients
+//import com.example.myapplication.data.Instructions
 import com.example.myapplication.data.Response
 
 
@@ -24,23 +24,23 @@ class FullInformationAdapter:Adapter<FoodFullInformation, Response.FullInformati
                 readyInMinutes = t.readyInMinutes,
                 servings = t.servings,
                 ingredients = adaptIngredients(t.ingredients),
-//                instructions = adaptInstructions(t.instructions)
+                analyzedInstructions = adaptInstructions(t.instructions)
             )
         }
     }
 
-//    private fun adaptInstructions(instructions: List<FoodFullInformation.ApiInstructions.ApiSteps>?): List<Instructions> {
-//        return instructions?.map {
-//            Instructions(
-//                name = it.number ?: 0,
-//                steps = it.number ?: ""
-//            )
-//        } ?: emptyList()
-//    }
+    private fun adaptInstructions(instructions: List<FoodFullInformation.ApiInstructions.ApiSteps>?): List<Response.FullInformationRecipe.Instructions.Steps> {
+        return instructions?.map {
+            Response.FullInformationRecipe.Instructions.Steps(
+                number = it.number ?: 0,
+                step = it.instruction ?: ""
+            )
+        } ?: emptyList()
+    }
 
-    private fun adaptIngredients(ingredients: List<FoodFullInformation.ApiIngredients>?): List<Ingredients> {
+    private fun adaptIngredients(ingredients: List<FoodFullInformation.ApiIngredients>?): List<Response.FullInformationRecipe.Ingredients> {
         return ingredients?.map {
-            Ingredients(
+            Response.FullInformationRecipe.Ingredients(
                 name = it.name
             )
         } ?: emptyList()

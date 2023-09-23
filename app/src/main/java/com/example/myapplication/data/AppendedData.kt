@@ -31,20 +31,24 @@ data class Response(
         val vegan: Boolean? = null,
         val servings: String? = null,
         val ingredients: List<Ingredients>? = emptyList(),
-        val instructions: List<Instructions>? = emptyList()
-    )
+        val analyzedInstructions: List<Instructions.Steps> = emptyList()
+    ){
+        data class Ingredients(
+            val name: String? = null,
+        )
+        data class Instructions(
+            val name:String?=null,
+            val steps: List<Steps>
+        ){
+            data class Steps(
+                val number: Int,
+                val step: String
+            )
+        }
+    }
 }
-data class Ingredients(
-    val name: String? = null,
-)
-data class Instructions(
-    val name:String?=null,
-    val steps: List<Steps>
-)
-data class Steps(
-    val number: Int,
-    val step: String
-)
+
+
 
 
 data class TextPredictor(
