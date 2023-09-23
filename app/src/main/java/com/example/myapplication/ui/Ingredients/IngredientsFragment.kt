@@ -16,11 +16,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
-import com.example.myapplication.RoundedCorners
-import com.example.myapplication.adapters.IngredientsAdapter
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.databinding.FragmentIngredientsBinding
 import com.example.myapplication.adapters.ItemClickListener
@@ -34,7 +31,7 @@ class IngredientsFragment : Fragment() {
     private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
 
-    private lateinit var ingredientsAdapter: IngredientsAdapter
+    private lateinit var ingredientsViewPagerAdapter: IngredientsViewPagerAdapter
        private val ingredientsViewModel:IngredientsViewModel by viewModels()
 
 
