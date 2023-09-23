@@ -2,6 +2,7 @@ package com.example.myapplication.ui.home
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,11 +38,10 @@ class HomeFragment : Fragment() {
         val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding.apply {
 
-//            homeViewModel.recipe.observe(viewLifecycleOwner){
-//                Glide.with(requireContext())
-//                    .load(it.image)
-//                    .into(binding.imageScroller)
-//            }
+            homeViewModel.trivia.observe(viewLifecycleOwner){
+                Log.d("TRIVIA RECIEVED", it)
+                binding.trivia.text = "$it :O"
+            }
 
             imageScroller.apply {
                 setExplicableRoundedCorners(120F, 10F, 120F, 10F)

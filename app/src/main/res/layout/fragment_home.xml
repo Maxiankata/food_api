@@ -22,10 +22,12 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/ScreenBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <View
             style="@style/SubBackground"
@@ -34,6 +36,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="@id/trivia"
+            app:layout_constraintBottom_toBottomOf="@id/trivia"
+            style="@style/StrongColor"
+            app:layout_constraintStart_toStartOf="@id/trivia"
+            app:layout_constraintEnd_toEndOf="@id/trivia"
+            />
+        <TextView
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            style="@style/TextAppearance"
+            android:text="@string/dish_name"
+            android:id="@+id/trivia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            />
 
         <ImageView
             android:id="@+id/imageView"
@@ -99,11 +123,11 @@
 
 
         <ImageButton
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"
             android:id="@+id/nutrients_search"
             android:layout_width="140dp"
             android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:background="#00000000"
             android:scaleType="centerCrop"
             android:src="@drawable/abs"
@@ -137,11 +161,11 @@
             app:layout_constraintTop_toTopOf="@id/nutrients_search" />
 
         <ImageButton
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
             android:id="@+id/weekly_recommended"
             android:layout_width="140dp"
             android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
             android:background="#00000000"
             android:scaleType="centerCrop"
             android:src="@drawable/rolls"

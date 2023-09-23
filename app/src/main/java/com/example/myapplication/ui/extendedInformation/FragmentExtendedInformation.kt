@@ -84,6 +84,7 @@ class FragmentExtendedInformation : Fragment() {
                 glutenTag.text = recipe.glutenFree.toString()
                 dairyTag.text = recipe.dairyFree.toString()
                 recipeName.text = recipe.title.toString()
+
                 ingredientsViewPager.setRoundedCorners(20F)
                 instructionsViewPager.setRoundedCorners(20F)
 
@@ -108,6 +109,8 @@ class FragmentExtendedInformation : Fragment() {
             Log.d("INSTRUCTIONS", recipe.instructions.toString())
 
         }
+
+
         binding.starLayoutChecked.visibility = GONE
         binding.apply {
             starLayout.setRoundedCorners(120F)
