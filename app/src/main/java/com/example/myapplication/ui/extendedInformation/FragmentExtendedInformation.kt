@@ -13,12 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
-import com.example.myapplication.MyApplication
-import com.example.myapplication.RoundedCorners
 import com.example.myapplication.databinding.FragmentExtendedInformationBinding
-import com.example.myapplication.room.FoodDB
-import com.example.myapplication.room.FoodDao
-import com.example.myapplication.room.FoodRoomInfo
 import com.example.myapplication.room.FullInformationToRoomAdapter
 import com.example.myapplication.room.RoomToFullInformationAdapter
 import com.example.myapplication.setRoundedCorners
@@ -61,6 +56,7 @@ class FragmentExtendedInformation : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setFabVisibility(VISIBLE)
         recipeContainerAdapter = RecipeContainerAdapter()
+
         instructionViewPagerAdapter = InstructionViewPagerAdapter()
         ingredientsViewPagerAdapter = IngredientsViewPagerAdapter()
 
@@ -70,7 +66,8 @@ class FragmentExtendedInformation : Fragment() {
 
         roomAdapter = FullInformationToRoomAdapter()
 
-        binding.ingredientsViewPager.adapter = recipeContainerAdapter
+        binding.ingredientsViewPager.adapter = ingredientsViewPagerAdapter
+
         binding.instructionsViewPager.adapter = instructionViewPagerAdapter
         informationViewModel.foods.observe(viewLifecycleOwner) { recipe ->
             Glide.with(this)
@@ -105,8 +102,8 @@ class FragmentExtendedInformation : Fragment() {
 
             ingredientsViewPagerAdapter.updateItems(recipe.ingredients)
             Log.d("INGREDIENTS", recipe.ingredients.toString())
-//            instructionViewPagerAdapter.updateItems(recipe.instructions)
-            Log.d("INSTRUCTIONS", recipe.instructions.toString())
+            instructionViewPagerAdapter.updateItems(recipe.analyzedInstructions)
+            Log.d("INSTRUCTIONS", recipe.analyzedInstructions.toString())
 
         }
 
@@ -115,10 +112,7 @@ class FragmentExtendedInformation : Fragment() {
         binding.apply {
             starLayout.setRoundedCorners(120F)
             favoriteButton.apply {
-
                 setOnClickListener{
-
-
                 }
             }
             starLayoutChecked.setRoundedCorners(120F)
