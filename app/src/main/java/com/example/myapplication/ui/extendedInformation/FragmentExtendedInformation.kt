@@ -43,7 +43,6 @@ class FragmentExtendedInformation : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        also { Log.d("ID RECIEVED", arguments?.getInt("recipe_id").toString()) }
         informationViewModel.fetchFood(arguments?.getInt("recipe_id")!!)
         _binding = FragmentExtendedInformationBinding.inflate(inflater, container, false)
         return binding.root

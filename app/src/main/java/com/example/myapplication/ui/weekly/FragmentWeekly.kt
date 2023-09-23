@@ -39,7 +39,6 @@ class FragmentWeekly : Fragment() {
         val itemAdapter = OptionRecyclerAdapter().apply {
             itemClickListener = object : ItemClickListener<FrontFood> {
                 override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-                    Log.d("ID SENT", item.id.toString())
                     findNavController().navigate(R.id.action_fragmentWeekly_to_blahblah, bundleOf("recipe_id" to item.id))
                 }
             }
