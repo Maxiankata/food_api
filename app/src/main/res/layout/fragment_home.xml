@@ -23,19 +23,17 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         style="@style/ScreenBackground"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <View
+            style="@style/SubBackground"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            style="@style/SubBackground"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -49,13 +47,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <ImageView
             android:id="@+id/image_scroller"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="220dp"
             android:layout_margin="30dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/dish"
 
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,151 +61,117 @@
 
         <ImageButton
             android:id="@+id/ingredients"
-            android:layout_marginTop="20dp"
-            android:layout_width="120dp"
+            android:layout_width="298dp"
             android:layout_height="100dp"
+            android:layout_marginTop="20dp"
             android:background="#00000000"
             android:scaleType="centerCrop"
             android:src="@drawable/udon"
-            app:layout_constraintEnd_toStartOf="@+id/dish_search"
+            app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toBottomOf="@id/image_scroller" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
 
+        <View
             style="@style/SubBackground"
+            android:layout_width="0dp"
+
+            android:layout_height="0dp"
             android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="@id/ingredients_text"
             app:layout_constraintEnd_toEndOf="@id/ingredients_text"
             app:layout_constraintStart_toStartOf="@id/ingredients_text"
-            app:layout_constraintTop_toTopOf="@id/ingredients_text"/>
-        <TextView android:id="@+id/ingredients_text"
+            app:layout_constraintTop_toTopOf="@id/ingredients_text" />
+
+        <TextView
+            android:id="@+id/ingredients_text"
+            style="@style/TextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:text="@string/dish_name"
-            style="@style/TextAppearance"
             android:textSize="20sp"
-            android:layout_margin="5dp"
             app:layout_constraintBottom_toBottomOf="@id/ingredients"
             app:layout_constraintEnd_toEndOf="@id/ingredients"
             app:layout_constraintStart_toStartOf="@id/ingredients"
             app:layout_constraintTop_toTopOf="@id/ingredients" />
 
-        <ImageButton
-            android:layout_marginTop="20dp"
-            android:src="@drawable/apples"
-            android:id="@+id/dish_search"
-            android:scaleType="centerCrop"
-            android:background="#000000"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toBottomOf="@id/ingredients"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ingredients"
-            app:layout_constraintTop_toBottomOf="@id/image_scroller" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
 
-            style="@style/SubBackground"
-            android:alpha="0.5"
-            app:layout_constraintBottom_toBottomOf="@id/dish_text"
-            app:layout_constraintEnd_toEndOf="@id/dish_text"
-            app:layout_constraintStart_toStartOf="@id/dish_text"
-            app:layout_constraintTop_toTopOf="@id/dish_text"/>
-        <TextView android:id="@+id/dish_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/ingredients"
-            style="@style/TextAppearance"
-            android:textSize="20sp"
-            android:layout_margin="5dp"
-            app:layout_constraintBottom_toBottomOf="@id/dish_search"
-            app:layout_constraintEnd_toEndOf="@id/dish_search"
-            app:layout_constraintStart_toStartOf="@id/dish_search"
-            app:layout_constraintTop_toTopOf="@id/dish_search" />
         <ImageButton
-            android:src="@drawable/abs"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
             android:id="@+id/nutrients_search"
-            android:scaleType="centerCrop"
-            android:background="#00000000"
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="100dp"
-            app:layout_constraintTop_toBottomOf="@id/ingredients"
-            app:layout_constraintEnd_toEndOf="@id/ingredients"
-            app:layout_constraintStart_toStartOf="@id/ingredients"
-            android:layout_margin="30dp"
-            />
+            android:background="#00000000"
+            android:scaleType="centerCrop"
+            android:src="@drawable/abs"
+            app:layout_constraintEnd_toStartOf="@id/weekly_recommended"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+
         <View
+            android:id="@+id/view2"
+            style="@style/SubBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            style="@style/SubBackground"
             android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="@id/nutrients_text"
             app:layout_constraintEnd_toEndOf="@id/nutrients_text"
             app:layout_constraintStart_toStartOf="@id/nutrients_text"
-            app:layout_constraintTop_toTopOf="@id/nutrients_text"/>
+            app:layout_constraintTop_toTopOf="@id/nutrients_text" />
 
-        <TextView android:id="@+id/nutrients_text"
+        <TextView
+            android:id="@+id/nutrients_text"
+            style="@style/TextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:text="@string/nutrients"
-            style="@style/TextAppearance"
             android:textSize="20sp"
-            android:layout_margin="5dp"
             app:layout_constraintBottom_toBottomOf="@id/nutrients_search"
             app:layout_constraintEnd_toEndOf="@id/nutrients_search"
             app:layout_constraintStart_toStartOf="@id/nutrients_search"
             app:layout_constraintTop_toTopOf="@id/nutrients_search" />
+
         <ImageButton
-            android:src="@drawable/rolls"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
             android:id="@+id/weekly_recommended"
-            android:scaleType="centerCrop"
-            android:background="#00000000"
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="100dp"
-            app:layout_constraintTop_toBottomOf="@id/dish_search"
-            app:layout_constraintEnd_toEndOf="@id/dish_search"
-            app:layout_constraintStart_toStartOf="@id/dish_search"
-            android:layout_margin="30dp"
-            />
+            android:background="#00000000"
+            android:scaleType="centerCrop"
+            android:src="@drawable/rolls"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nutrients_search"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+
         <View
+            style="@style/SubBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            style="@style/SubBackground"
             android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="@id/weekly_text"
             app:layout_constraintEnd_toEndOf="@id/weekly_text"
             app:layout_constraintStart_toStartOf="@id/weekly_text"
-            app:layout_constraintTop_toTopOf="@id/weekly_text"/>
+            app:layout_constraintTop_toTopOf="@id/weekly_text" />
 
-        <TextView android:id="@+id/weekly_text"
+        <TextView
+            android:id="@+id/weekly_text"
+            style="@style/TextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:gravity="center"
             android:text="@string/weekly"
-            style="@style/TextAppearance"
             android:textSize="20sp"
-            android:layout_margin="5dp"
             app:layout_constraintBottom_toBottomOf="@id/weekly_recommended"
             app:layout_constraintEnd_toEndOf="@id/weekly_recommended"
             app:layout_constraintStart_toStartOf="@id/weekly_recommended"
             app:layout_constraintTop_toTopOf="@id/weekly_recommended" />
-        <TextView
-            android:id="@+id/funfact"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/nutrients_search"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="10dp"
-
-            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
