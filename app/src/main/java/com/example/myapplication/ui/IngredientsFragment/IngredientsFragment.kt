@@ -24,6 +24,7 @@ import com.example.myapplication.adapters.OptionRecyclerAdapter
 import com.example.myapplication.adapters.TextPredictionAdapter
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.databinding.FragmentIngredientSearchBinding
+import com.example.myapplication.databinding.FragmentRecipeNameBinding
 
 
 class IngredientsFragment : Fragment() {
@@ -32,9 +33,6 @@ class IngredientsFragment : Fragment() {
     private val handler = Handler(Looper.getMainLooper())
 
     private lateinit var recipeContainerAdapter: RecipeContainerAdapter
-       private val ingredientsViewModel:IngredientsViewModel by viewModels()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,73 +45,73 @@ class IngredientsFragment : Fragment() {
         _binding = FragmentIngredientSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            val ingredientsViewModel = ViewModelProvider(this)[IngredientsViewModel::class.java]
+        val ingredientsViewModel = ViewModelProvider(this)[IngredientsViewModel::class.java]
 
-            val textPredictionAdapter = TextPredictionAdapter().apply {
-                itemClickListener = object : ItemClickListener<TextPredictor> {
-                    override fun onItemClicked(item: TextPredictor, itemPosition: Int) {
-                        binding.textInput.setQuery(item.name, true)
-                    }
+        val textPredictionAdapter = TextPredictionAdapter().apply {
+            itemClickListener = object : ItemClickListener<TextPredictor> {
+                override fun onItemClicked(item: TextPredictor, itemPosition: Int) {
+                    binding.textInput.setQuery(item.name, true)
                 }
             }
-            val itemAdapter = OptionRecyclerAdapter().apply {
-                itemClickListener = object : ItemClickListener<FrontFood> {
-                    override fun onItemClicked(item: FrontFood, itemPosition: Int) {
-                        Log.d("SENDING ID", item.id.toString())
-                        findNavController().navigate(R.id.action_IngredientSearch_to_blahblah, bundleOf("recipe_id" to item.id))
-                    }
+        }
+        val itemAdapter = OptionRecyclerAdapter().apply {
+            itemClickListener = object : ItemClickListener<FrontFood> {
+                override fun onItemClicked(item: FrontFood, itemPosition: Int) {
+                    Log.d("SENDING ID", item.id.toString())
+                    findNavController().navigate(R.id.action_IngredientSearch_to_blahblah, bundleOf("recipe_id" to item.id))
                 }
             }
-            ingredientsViewModel._foods.observe(viewLifecycleOwner){
+        }
+        ingredientsViewModel._foods.observe(viewLifecycleOwner){
 
+        }
+        binding.apply {
+
+            textPredictionRecycler.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = textPredictionAdapter
             }
+            itemRecyclerView.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = itemAdapter
+            }
+            textInput.apply {
+                setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        query?.let{
+                            ingredientsViewModel.fetchFood(query)
+                            Log.d("FOUND INGREDIENTS LOL", query.toString())
+                        }
+                        textPredictionRecycler.visibility=GONE
+                        return true
+                    }
+
+                    override fun onQueryTextChange(query: String?): Boolean {
+                        query?.let {
+                            textPredictionRecycler.visibility= VISIBLE
+                            handler.postDelayed({
+                                ingredientsViewModel.fetchPredictionText(query)
+                            }, 1000)
+                        }
+                        return true
+                    }
+                })
+            }
+        }
+        ingredientsViewModel.autoCompleteText.observe(viewLifecycleOwner){
+            Log.d("AutoCompleteData", it.toString())
             binding.apply {
+                textPredictionAdapter.updateItems(it as ArrayList<TextPredictor>)
 
-                textPredictionRecycler.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = textPredictionAdapter
-                }
-                itemRecyclerView.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = itemAdapter
-                }
-                textInput.apply {
-                    setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-                        override fun onQueryTextSubmit(query: String?): Boolean {
-                            query?.let{
-                                ingredientsViewModel.fetchIngredients(query)
-
-                            }
-                            textPredictionRecycler.visibility=GONE
-                            return true
-                        }
-
-                        override fun onQueryTextChange(query: String?): Boolean {
-                            query?.let {
-                                textPredictionRecycler.visibility= VISIBLE
-                                handler.postDelayed({
-                                    ingredientsViewModel.fetchPredictionText(query)
-                                }, 1000)
-                            }
-                            return true
-                        }
-                    })
-                }
             }
-            ingredientsViewModel.autoCompleteText.observe(viewLifecycleOwner){
-                Log.d("AutoCompleteData", it.toString())
-                binding.apply {
-                    textPredictionAdapter.updateItems(it as ArrayList<TextPredictor>)
-
-                }
+        }
+        ingredientsViewModel.recipes.observe(viewLifecycleOwner){
+            binding.apply {
+                itemAdapter.updateItems(it)
             }
-            ingredientsViewModel.recipes.observe(viewLifecycleOwner){
-                binding.apply {
-                    itemAdapter.updateItems(it)
-                }
-            }
+        }
 
         // Make the fab visible
         (activity as? MainActivity)?.setFabVisibility(GONE)

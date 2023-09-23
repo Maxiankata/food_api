@@ -40,7 +40,6 @@ data class Food(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String? = null,
     @SerializedName("image") val image: String? = null,
-    @SerializedName("imageType") val imageType: String? = null
 )
 
 data class IngredientResponse(

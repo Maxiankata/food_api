@@ -9,23 +9,20 @@ import com.example.myapplication.data.Steps
 
 //import com.example.myapplication.data.Response.Steps
 
-class InstructionViewPagerAdapter :
-    RecyclerView.Adapter<InstructionViewPagerAdapter.InstructionPagerViewHolder>() {
-    class InstructionPagerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAdapter.InstructionPagerViewHolder>() {
+    class InstructionPagerViewHolder (view: View): RecyclerView.ViewHolder(view){
         val stepNumber = view.findViewById<TextView>(R.id.step_number)
         val instruction = view.findViewById<TextView>(R.id.instruction)
-        fun bind(instructions: Steps) {
-            stepNumber.text = instructions.number.toString()
+        fun bind(instructions: Steps){
+            stepNumber.text =instructions.number.toString()
             instruction.text = instructions.step
         }
     }
-
     var items = ArrayList<Steps>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = InstructionPagerViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= InstructionPagerViewHolder(
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.instruction_view_pager, parent, false)
-    )
+        .inflate(R.layout.instruction_view_pager, parent, false))
 
 
     override fun getItemCount(): Int = items.size
@@ -33,8 +30,7 @@ class InstructionViewPagerAdapter :
     override fun onBindViewHolder(holder: InstructionPagerViewHolder, position: Int) {
         holder.bind(items[position])
     }
-
-    fun updateItems(newInstructions: List<Steps>?) {
+    fun updateItems(newInstructions: List<Steps>?){
         items.clear()
         items.addAll(newInstructions!!)
         notifyDataSetChanged()
