@@ -14,6 +14,8 @@ import com.example.myapplication.data.Food
 import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.Response.FullInformationRecipe
 import com.example.myapplication.data.FoodFullInformation.ApiInstructions
+import com.example.myapplication.data.ApiRandomTrivia
+import com.example.myapplication.data.RandomResponse
 import com.example.myapplication.data.Steps
 import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
@@ -32,7 +34,7 @@ class RetrofitFoodApiService : FoodApiService {
 //        const val API_KEY = "12e762759f344271b7abc1a4da9400e8"
         const val API_KEY = "0e0a2be67fe14660b09c10952fe86678"
 
-        const val API_HOST = "https://api.spoonacular.com/recipes/"
+        const val API_HOST = "https://api.spoonacular.com/"
 
         private var apiSingleton: RetrofitFoodApiService? = null
         private var adapter = FoodToFrontFoodAdapter()
@@ -73,10 +75,7 @@ class RetrofitFoodApiService : FoodApiService {
     override suspend fun getFoodByComplexSearch(query: String): List<FrontFood> =
         foodApi.getFoodByComplexSearch(API_KEY, query).results.mapNotNull { adapter.adapt(it!!) }
 
-    override suspend fun getRandomRecipe(): FullInformationRecipe? = fullInformationAdapter.adapt(
-        foodApi.getRandomRecipe(
-            API_KEY).first()
-    )
+    override suspend fun getRandomRecipe(): List<FrontFood> = foodApi.getRandomRecipe(API_KEY).results.mapNotNull { adapter.adapt(it!!) }
 
     override suspend fun getPrediction(query: String): List<TextPredictor> =
         foodApi.getPredictionText(API_KEY, query).mapNotNull { predictionAdapter.adapt(it) }
@@ -95,19 +94,15 @@ class RetrofitFoodApiService : FoodApiService {
             .mapNotNull { adapter.adapt(it) }
             .also { Log.d("FETCHING INGREDIENTS", it.toString()) }
 
-    override suspend fun getRecipeBulk(): Flow<List<FullInformationRecipe>> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun getRecipeInstructionsById(id: Int): List<Steps> =
         foodApi.getRecipeInstructionsById(id, API_KEY).first().steps.mapNotNull { instructionAdapter.adapt(it) }
 
-
+    override suspend fun getRandomTrivia(): String = foodApi.getRandomFoodTrivia(API_KEY).text?:"no trivia sir"
 
 }
 
 interface FoodApi {
-    @GET("complexSearch")
+    @GET("recipes/complexSearch")
     suspend fun getFoodByComplexSearch(
         @Query("apiKey") apiKey: String,
         @Query("query") query: String,
@@ -115,35 +110,31 @@ interface FoodApi {
     ): RecipeResponse
 
     @GET("recipes/random")
-    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): List<FoodFullInformation>
+    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): RandomResponse
 
 
-    @GET("autocomplete")
+    @GET("recipes/autocomplete")
     suspend fun getPredictionText(
         @Query("apiKey") apiKey: String,
         @Query("query") query: String,
         @Query("number") number: Int = 5
     ): List<TextPredictorJsonStealer>
 
-    @GET("{id}/information")
+    @GET("recipes/{id}/information")
     suspend fun getRecipeById(
         @Path("id") id: Int,
         @Query("apiKey") apiKey: String
     ): FoodFullInformation
 
-    @GET("findByIngredients")
+    @GET("recipes/findByIngredients")
     suspend fun getRecipesByIngredients(@Query("apiKey") apiKey: String, @Query("ingredients") query: String, @Query("number") number: Int = 1): List<Food>
 
-
-    @GET("informationBulk")
-    suspend fun getInformationBulk(
-        @Query("apiKey") apiKey: String,
-        @Query("number") number: Int = 1
-    ): List<FullInformationRecipe>
 
     @GET("recipes{id}/analyzedInstructions")
     suspend fun getRecipeInstructionsById(@Path("id") id: Int, @Query("apiKey") apiKey: String): List<ApiInstructions>
 
+    @GET("food/trivia/random")
+    suspend fun getRandomFoodTrivia(@Query("apiKey") apiKey: String): ApiRandomTrivia
 
 
     @GET("recipes/findByNutrients")
