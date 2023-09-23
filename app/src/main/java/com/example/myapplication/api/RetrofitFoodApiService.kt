@@ -15,6 +15,7 @@ import com.example.myapplication.data.IngredientResponse
 //import com.example.myapplication.data.Response.Steps
 import com.example.myapplication.data.Response.FullInformationRecipe
 import com.example.myapplication.data.FoodFullInformation.ApiInstructions
+import com.example.myapplication.data.Steps
 //import com.example.myapplication.data.ApiResponse
 import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
@@ -106,7 +107,7 @@ class RetrofitFoodApiService : FoodApiService {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getRecipeInstructionsById(id: Int): List<FullInformationRecipe.Steps> =
+    override suspend fun getRecipeInstructionsById(id: Int): List<Steps> =
         foodApi.getRecipeInstructionsById(id, API_KEY).first().steps.mapNotNull { instructionAdapter.adapt(it) }
 
 

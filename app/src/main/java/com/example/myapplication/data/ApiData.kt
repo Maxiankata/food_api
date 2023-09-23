@@ -16,13 +16,14 @@ data class FoodFullInformation(
     @SerializedName("glutenFree") val glutenFree: Boolean? = null,
     @SerializedName("vegan") val vegan: Boolean? = null,
     @SerializedName("servings") val servings: String? = null,
-    @SerializedName("analyzedInstructions") val instructions: List<ApiInstructions.ApiSteps>? = null,
+    @SerializedName("analyzedInstructions") val instructions: List<ApiInstructions>? = null,
     @SerializedName("extendedIngredients") val ingredients: List<ApiIngredients>? = emptyList()
 ){
     data class ApiIngredients(
         @SerializedName("original") val name: String? = null,
     )
     data class ApiInstructions(
+        @SerializedName("name") val name: String?,
         @SerializedName("steps") val steps: List<ApiSteps>
     ){
         data class ApiSteps(

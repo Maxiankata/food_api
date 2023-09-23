@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.Ingredients
+package com.example.myapplication.ui.IngredientsFragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -19,19 +19,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.data.TextPredictor
-import com.example.myapplication.databinding.FragmentIngredientsBinding
 import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.adapters.OptionRecyclerAdapter
 import com.example.myapplication.adapters.TextPredictionAdapter
 import com.example.myapplication.data.FrontFood
+import com.example.myapplication.databinding.FragmentIngredientSearchBinding
 
 
 class IngredientsFragment : Fragment() {
-    private var _binding: FragmentIngredientsBinding? = null
+    private var _binding: FragmentIngredientSearchBinding? = null
     private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
 
-    private lateinit var ingredientsViewPagerAdapter: IngredientsViewPagerAdapter
+    private lateinit var recipeContainerAdapter: RecipeContainerAdapter
        private val ingredientsViewModel:IngredientsViewModel by viewModels()
 
 
@@ -44,7 +44,7 @@ class IngredientsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentIngredientsBinding.inflate(inflater, container, false)
+        _binding = FragmentIngredientSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,7 +83,7 @@ class IngredientsFragment : Fragment() {
                     setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                         override fun onQueryTextSubmit(query: String?): Boolean {
                             query?.let{
-                                ingredientsViewModel.fetchFood(query)
+                                ingredientsViewModel.fetchIngredients(query)
 
                             }
                             textPredictionRecycler.visibility=GONE

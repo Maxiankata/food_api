@@ -5,11 +5,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/ingredient_text"
+        style="@style/TextAppearance"
+        android:id="@+id/ingredient_text_field"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -33,9 +33,9 @@
 
     <fragment
         android:id="@+id/IngredientSearch"
-        android:name="com.example.myapplication.ui.Ingredients.IngredientsFragment"
-        android:label="@string/recipe_search"
-        tools:layout="@layout/fragment_ingredients">
+        android:name="com.example.myapplication.ui.IngredientsFragment.DishFragment"
+        android:label="@string/dish_name"
+        tools:layout="@layout/fragment_recipe_name">
         <action
             android:id="@+id/action_IngredientSearch_to_blahblah"
             app:destination="@id/blahblah" />
@@ -43,8 +43,8 @@
     <fragment
         android:id="@+id/fragmentDishName"
         android:name="com.example.myapplication.FragmentDishName"
-        android:label="fragment_dish_name"
-        tools:layout="@layout/fragment_dish_name" />
+        android:label="@string/ingredients"
+        tools:layout="@layout/fragment_ingredient_search" />
     <fragment
         android:id="@+id/fragmentNutrientSearch"
         android:name="com.example.myapplication.ui.nutrients.FragmentNutrientSearch"

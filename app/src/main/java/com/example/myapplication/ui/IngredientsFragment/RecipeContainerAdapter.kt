@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.Ingredients
+package com.example.myapplication.ui.IngredientsFragment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,7 @@ import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.setRoundedCorners
 
-class   IngredientsViewPagerAdapter(): RecyclerView.Adapter<IngredientsViewPagerAdapter.IngredientsViewHolder>() {
+class   RecipeContainerAdapter(): RecyclerView.Adapter<RecipeContainerAdapter.IngredientsViewHolder>() {
     private val items = ArrayList<FrontFood>()
     var itemClickListener: ItemClickListener<FrontFood>? = null
 
