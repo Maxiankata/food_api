@@ -37,30 +37,20 @@ class HomeFragment : Fragment() {
         val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding.apply {
 
-            homeViewModel.recipe.observe(viewLifecycleOwner){
-                binding.funfact.text = it.title
-                Glide.with(requireContext())
-                    .load(it.image)
-                    .into(binding.imageScroller)
-            }
+//            homeViewModel.recipe.observe(viewLifecycleOwner){
+//                binding.funfact.text = it.title
+//                Glide.with(requireContext())
+//                    .load(it.image)
+//                    .into(binding.imageScroller)
+//            }
 
             imageScroller.apply {
                 setExplicableRoundedCorners(120F, 10F, 120F, 10F)
             }
             ingredients.apply {
-                setExplicableRoundedCorners(80f, 0f, 0f, 0f)
+                setExplicableRoundedCorners(80f, 80f, 0f, 0f)
                 setOnClickListener {
                         findNavController().navigate(R.id.searchInflater)
-                }
-            }
-
-            dishSearch.apply {
-                setExplicableRoundedCorners(0f, 80f, 0f, 0f)
-
-                setOnClickListener {
-
-                        findNavController().navigate(R.id.dishInflater)
-
                 }
             }
             nutrientsSearch.apply {

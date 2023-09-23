@@ -189,6 +189,7 @@
         app:layout_constraintTop_toBottomOf="@id/ingredientsViewPager" />
 
     <LinearLayout
+        android:layout_margin="1dp"
         android:id="@+id/star_layout"
         style="@style/SubBackground"
         android:layout_width="wrap_content"
@@ -209,7 +210,8 @@
 
     </LinearLayout>
     <LinearLayout
-    android:id="@+id/star_layout_checked"
+        android:layout_margin="1dp"
+        android:id="@+id/star_layout_checked"
     style="@style/StrongColor"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

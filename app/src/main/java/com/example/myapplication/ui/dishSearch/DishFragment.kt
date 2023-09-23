@@ -12,7 +12,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,8 +22,10 @@ import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.adapters.OptionRecyclerAdapter
 import com.example.myapplication.adapters.TextPredictionAdapter
 import com.example.myapplication.data.FrontFood
-import com.example.myapplication.databinding.FragmentIngredientSearchBinding
 import com.example.myapplication.databinding.FragmentRecipeNameBinding
+import com.example.myapplication.setExplicableRoundedCorners
+import com.example.myapplication.setRoundedCorners
+import com.example.myapplication.ui.dishSearch.DishViewModel
 
 
 class DishFragment : Fragment() {
@@ -47,7 +48,7 @@ class DishFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ingredientsViewModel = ViewModelProvider(this)[IngredientsViewModel::class.java]
+        val dishViewModel = ViewModelProvider(this)[DishViewModel::class.java]
 
         val textPredictionAdapter = TextPredictionAdapter().apply {
             itemClickListener = object : ItemClickListener<TextPredictor> {
@@ -64,12 +65,27 @@ class DishFragment : Fragment() {
                 }
             }
         }
-        ingredientsViewModel._foods.observe(viewLifecycleOwner){
+        binding.apply {
+            button1.visibility = GONE
+            button.setOnClickListener{
+                button.visibility = GONE
+                button1.visibility = VISIBLE
+            }
+            button1.setOnClickListener{
+                button.visibility = VISIBLE
+                button1.visibility = GONE
+            }
+        }
+
+        dishViewModel._foods.observe(viewLifecycleOwner){
 
         }
         binding.apply {
+            imageScroller.setExplicableRoundedCorners(10F, 50F, 10F, 50F)
+            textInput.setRoundedCorners(20F)
 
             textPredictionRecycler.apply {
+                setRoundedCorners(10F)
                 layoutManager = LinearLayoutManager(context)
                 adapter = textPredictionAdapter
             }
@@ -80,34 +96,45 @@ class DishFragment : Fragment() {
             textInput.apply {
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                     override fun onQueryTextSubmit(query: String?): Boolean {
-                        query?.let{
-                            ingredientsViewModel.fetchIngredients(query)
-                            Log.d("FOUND INGREDIENTS LOL", query.toString())
+                        if (button.visibility == VISIBLE) {
+                            query?.let {
+                                dishViewModel.fetchFood(query)
+                                Log.d("FOUND INGREDIENTS LOL", query.toString())
+                            }
+                            textPredictionRecycler.visibility = GONE
+
+                        }else{
+                            query?.let {
+                                dishViewModel.fetchIngredients(query)
+                                Log.d("FOUND INGREDIENTS LOL", query.toString())
+                            }
+                            textPredictionRecycler.visibility = GONE
                         }
-                        textPredictionRecycler.visibility=GONE
                         return true
                     }
 
                     override fun onQueryTextChange(query: String?): Boolean {
-                        query?.let {
-                            textPredictionRecycler.visibility= VISIBLE
-                            handler.postDelayed({
-                                ingredientsViewModel.fetchPredictionText(query)
-                            }, 1000)
-                        }
+
+                            query?.let {
+                                textPredictionRecycler.visibility = VISIBLE
+                                handler.postDelayed({
+                                    dishViewModel.fetchPredictionText(query)
+                                }, 1000)
+                            }
+
                         return true
                     }
                 })
             }
         }
-        ingredientsViewModel.autoCompleteText.observe(viewLifecycleOwner){
+        dishViewModel.autoCompleteText.observe(viewLifecycleOwner){
             Log.d("AutoCompleteData", it.toString())
             binding.apply {
                 textPredictionAdapter.updateItems(it as ArrayList<TextPredictor>)
 
             }
         }
-        ingredientsViewModel.recipes.observe(viewLifecycleOwner){
+        dishViewModel.recipes.observe(viewLifecycleOwner){
             binding.apply {
                 itemAdapter.updateItems(it)
             }
