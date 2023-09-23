@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.Ingredients
+package com.example.myapplication.ui.IngredientsFragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -31,6 +31,11 @@ class IngredientsViewModel(application: Application) : AndroidViewModel(applicat
     fun fetchFood(query: String){
         viewModelScope.launch {
             _foods.postValue(_api.getFoodByComplexSearch(query))
+        }
+    }
+    fun fetchIngredients(query: String){
+        viewModelScope.launch {
+            _foods.postValue(_api.findByIngredients(query))
         }
     }
 }

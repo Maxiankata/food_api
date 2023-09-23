@@ -10,13 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.adapters.OptionRecyclerAdapter
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.databinding.FragmentWeeklyBinding
-import com.example.myapplication.ui.Ingredients.IngredientsViewModel
 
 
 class FragmentWeekly : Fragment() {

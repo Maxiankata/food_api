@@ -6,21 +6,25 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
+import com.example.myapplication.RoundedCorners
 import com.example.myapplication.databinding.FragmentExtendedInformationBinding
 import com.example.myapplication.setRoundedCorners
-import com.example.myapplication.ui.Ingredients.IngredientsViewPagerAdapter
+import com.example.myapplication.ui.IngredientsFragment.RecipeContainerAdapter
+import com.example.myapplication.ui.ingredientsInformation.IngredientsViewPagerAdapter
 
 
 class FragmentExtendedInformation : Fragment() {
     private var _binding: FragmentExtendedInformationBinding? = null
     private val binding get() = _binding!!
-    lateinit var ingredientsViewPagerAdapter: IngredientsViewPagerAdapter
+    lateinit var recipeContainerAdapter: RecipeContainerAdapter
     lateinit var instructionViewPagerAdapter: InstructionViewPagerAdapter
+    lateinit var ingredientsViewPagerAdapter:IngredientsViewPagerAdapter
 
     private val informationViewModel: ExtendedInformationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,13 +44,17 @@ class FragmentExtendedInformation : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? MainActivity)?.setFabVisibility(VISIBLE)
-        ingredientsViewPagerAdapter = IngredientsViewPagerAdapter()
+        recipeContainerAdapter = RecipeContainerAdapter()
         instructionViewPagerAdapter = InstructionViewPagerAdapter()
+        ingredientsViewPagerAdapter = IngredientsViewPagerAdapter()
 
-        binding.ingredientsViewPager.adapter = ingredientsViewPagerAdapter
+        binding.ingredientsViewPager.adapter = recipeContainerAdapter
         binding.instructionsViewPager.adapter = instructionViewPagerAdapter
         informationViewModel.foods.observe(viewLifecycleOwner) { recipe ->
-            Glide.with(this).load(recipe.image).into(binding.imageView)
+            Glide.with(this)
+                .load(recipe.image)
+                .into(binding.imageView)
+                .view.setRoundedCorners(30F)
             binding.apply {
                 readyInMinutes.text = recipe.readyInMinutes.toString()
                 veganTag.text = recipe.vegan.toString()
@@ -54,17 +62,35 @@ class FragmentExtendedInformation : Fragment() {
                 glutenTag.text = recipe.glutenFree.toString()
                 dairyTag.text = recipe.dairyFree.toString()
                 recipeName.text = recipe.title.toString()
+                ingredientsViewPager.setRoundedCorners(20F)
+                instructionsViewPager.setRoundedCorners(20F)
+
             }
 
-//            ingredientsViewPagerAdapter.updateItems(recipe.ingredients)
-            instructionViewPagerAdapter.updateItems(recipe.instructions)
+
+            ingredientsViewPagerAdapter.updateItems(recipe.ingredients)
+            Log.d("INGREDIENTS", recipe.ingredients.toString())
+//            instructionViewPagerAdapter.updateItems(recipe.instructions)
             Log.d("INSTRUCTIONS", recipe.instructions.toString())
 
         }
+        binding.starLayoutChecked.visibility = GONE
         binding.apply {
-            starLayout.apply {
-                setRoundedCorners(120F)
+            starLayout.setRoundedCorners(120F)
+            favoriteButton.apply {
 
+                setOnClickListener{
+                    starLayoutChecked.visibility = VISIBLE
+                    starLayout.visibility = GONE
+                }
+            }
+            starLayoutChecked.setRoundedCorners(120F)
+            favoritedButton.apply {
+
+                setOnClickListener{
+                    starLayout.visibility = VISIBLE
+                    starLayoutChecked.visibility = GONE
+                }
             }
             (activity as? MainActivity)?.setFabVisibility(View.GONE)
 

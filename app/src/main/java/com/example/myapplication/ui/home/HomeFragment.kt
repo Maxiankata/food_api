@@ -50,9 +50,7 @@ class HomeFragment : Fragment() {
             ingredients.apply {
                 setExplicableRoundedCorners(80f, 0f, 0f, 0f)
                 setOnClickListener {
-
                         findNavController().navigate(R.id.searchInflater)
-
                 }
             }
 
