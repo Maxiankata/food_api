@@ -22,12 +22,10 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     init {
         fetchRecipe()
     }
-
     private fun fetchRecipe() {
         viewModelScope.launch {
             val result = api.getRandomTrivia()
             _trivia.postValue(result)
-            Log.d("TRIVIA SENT", result)
         }
     }
 }
