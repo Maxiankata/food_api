@@ -1,6 +1,6 @@
 package com.example.myapplication.ui.ingredientsInformation
 
-import com.example.myapplication.data.Ingredients
+//import com.example.myapplication.data.Ingredients
 
 //class IngredientsViewPagerAdapter :
 //    RecyclerView.Adapter<IngredientsViewPagerAdapter.IngredientsViewHolder>() {
@@ -34,26 +34,32 @@ import com.example.myapplication.data.Ingredients
 //        notifyDataSetChanged()
 //    }
 //}
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.data.Response
+
 class IngredientsViewPagerAdapter :
     RecyclerView.Adapter<IngredientsViewPagerAdapter.IngredientsPagerViewHolder>() {
     class IngredientsPagerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val stepNumber = view.findViewById<TextView>(R.id.ingredient_text_field)
-        fun bind(ingredients: Ingredients) {
-            stepNumber.text = ingredients.name
+        val ingredient = view.findViewById<TextView>(R.id.ingredient_text_field)
+
+        fun bind(ingredients: Response.FullInformationRecipe.Ingredients) {
+            ingredient.text = ingredients.name.toString()
+            Log.d("BINDING INGREDIENT", ingredient.toString())
+
         }
     }
 
-    var items = ArrayList<Ingredients>()
+    var items = ArrayList<Response.FullInformationRecipe.Ingredients>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = IngredientsPagerViewHolder(
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.ingredient_text, parent, false)
+            .inflate(R.layout.ingredient_view_pager, parent, false)
     )
 
 
@@ -61,11 +67,14 @@ class IngredientsViewPagerAdapter :
 
     override fun onBindViewHolder(holder: IngredientsPagerViewHolder, position: Int) {
         holder.bind(items[position])
+        Log.d("BINDING INGREDIENT", items.toString())
+
     }
 
-    fun updateItems(newIngredients: List<Ingredients>?) {
+    fun updateItems(newIngredients: List<Response.FullInformationRecipe.Ingredients>?) {
         items.clear()
         items.addAll(newIngredients!!)
+        Log.d("UPDATING INGREDIENT", items.toString())
         notifyDataSetChanged()
     }
 }
