@@ -1,10 +1,6 @@
 package com.example.myapplication.api
 
 import com.example.myapplication.data.FrontFood
-import com.example.myapplication.data.NutritionRequest
-
-import com.example.myapplication.data.RecipeResponse
-import com.example.myapplication.data.Response
 import com.example.myapplication.data.Response.FullInformationRecipe
 import com.example.myapplication.data.Steps
 import com.example.myapplication.data.TextPredictor

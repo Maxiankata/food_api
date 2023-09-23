@@ -12,15 +12,13 @@ import com.example.myapplication.adapters.ItemClickListener
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.setRoundedCorners
 
-class   RecipeContainerAdapter(): RecyclerView.Adapter<RecipeContainerAdapter.IngredientsViewHolder>() {
+class  RecipeContainerAdapter(): RecyclerView.Adapter<RecipeContainerAdapter.IngredientsViewHolder>() {
     private val items = ArrayList<FrontFood>()
     var itemClickListener: ItemClickListener<FrontFood>? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recycler, parent, false)
         return IngredientsViewHolder(view)
     }
-
     override fun getItemCount(): Int {
         return items.size
     }

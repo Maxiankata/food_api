@@ -20,9 +20,6 @@
             android:id="@+id/weeklyInflater"
             app:destination="@id/weekly_recommended"/>
         <action
-            android:id="@+id/dishInflater"
-            app:destination="@id/fragmentDishName"/>
-        <action
             android:id="@+id/action_Home_to_blahblah"
             app:destination="@id/blahblah" />
         <action
@@ -38,15 +35,6 @@
         tools:layout="@layout/fragment_recipe_name">
         <action
             android:id="@+id/action_IngredientSearch_to_blahblah"
-            app:destination="@id/blahblah" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentDishName"
-        android:name="com.example.myapplication.FragmentDishName"
-        android:label="@string/ingredients"
-        tools:layout="@layout/fragment_ingredient_search" >
-        <action
-            android:id="@+id/action_fragmentDishName_to_blahblah"
             app:destination="@id/blahblah" />
     </fragment>
     <fragment

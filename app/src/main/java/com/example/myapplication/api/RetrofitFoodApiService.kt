@@ -12,14 +12,9 @@ import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.adapters.TextPredictionAdapterAdapter
 import com.example.myapplication.data.Food
 import com.example.myapplication.data.FoodFullInformation
-import com.example.myapplication.data.IngredientResponse
-//import com.example.myapplication.data.Response.Steps
 import com.example.myapplication.data.Response.FullInformationRecipe
 import com.example.myapplication.data.FoodFullInformation.ApiInstructions
-
-
 import com.example.myapplication.data.Steps
-//import com.example.myapplication.data.ApiResponse
 import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.Flow

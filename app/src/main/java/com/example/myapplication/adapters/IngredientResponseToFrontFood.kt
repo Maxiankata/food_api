@@ -1,6 +1,5 @@
 package com.example.myapplication.adapters
 
-import com.example.myapplication.data.Food
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.data.IngredientResponse
 
