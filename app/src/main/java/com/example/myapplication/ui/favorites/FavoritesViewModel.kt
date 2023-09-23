@@ -20,8 +20,12 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
     val _foods = MutableLiveData<List<FrontFood>>()
     val foods: LiveData<List<FrontFood>> get() = _foods
 
-    var foodList: List<FrontFood> = emptyList()
+    private val _foodListLiveData = MutableLiveData<List<FrontFood>>()
+    val foodListLiveData: LiveData<List<FrontFood>> get() = _foodListLiveData
 
+    fun setFoodList(secondList: List<FrontFood>) {
+        _foodListLiveData.postValue(secondList)
+    }
     fun getDatabaseEntries(){
         val foodDatabase = MainActivity.getDatabaseInstance()
         val foodBase = foodDatabase.dao()
@@ -29,13 +33,10 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
 
         viewModelScope.launch(Dispatchers.IO) {
             val foodRoomInfoList = foodBase.getAllFoods()
-            Log.d("FOOD REBASED", foodRoomInfoList.toString())
             val secondlist = foodRoomInfoList.mapNotNull { reverseRoomAdapter.adapt(it) }
-            Log.d("FOOD REBASED TWICE", secondlist.toString())
 
-            foodList = secondlist
-            Log.d("FOOD REBASED THRICE", foodList.toString())
-
+            // Call setFoodList inside the coroutine scope
+            setFoodList(secondlist)
         }
     }
 }
