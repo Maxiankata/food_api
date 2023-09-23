@@ -15,20 +15,26 @@ data class FoodFullInformation(
     @SerializedName("glutenFree") val glutenFree: Boolean? = null,
     @SerializedName("vegan") val vegan: Boolean? = null,
     @SerializedName("servings") val servings: String? = null,
-    @SerializedName("analyzedInstructions") val instructions: List<ApiInstructions>? = null,
-    @SerializedName("extendedIngredients") val ingredients: List<ApiIngredients>? = emptyList()
-){
+    @SerializedName("extendedIngredients") val ingredients: List<ApiIngredients>? = null,
+    @SerializedName("analyzedInstructions") val instructions: List<ApiInstructions.ApiSteps>? = null,
+) {
     data class ApiIngredients(
         @SerializedName("original") val name: String? = null,
     )
+
     data class ApiInstructions(
         @SerializedName("name") val name: String?,
         @SerializedName("steps") val steps: List<ApiSteps>
-    ){
+    ) {
         data class ApiSteps(
             @SerializedName("number") val number: Int? = null,
             @SerializedName("step") val instruction: String? = null
-        )
+        ){
+            data class apiStepSteps(
+                @SerializedName("number") val number: Int? = null,
+                @SerializedName("step") val instruction: String? = null
+            )
+        }
     }
 }
 

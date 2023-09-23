@@ -16,7 +16,7 @@ import com.example.myapplication.data.Response.FullInformationRecipe
 import com.example.myapplication.data.FoodFullInformation.ApiInstructions
 import com.example.myapplication.data.ApiRandomTrivia
 import com.example.myapplication.data.RandomResponse
-import com.example.myapplication.data.Steps
+//import com.example.myapplication.data.Steps
 import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.Flow
@@ -94,7 +94,7 @@ class RetrofitFoodApiService : FoodApiService {
             .mapNotNull { adapter.adapt(it) }
             .also { Log.d("FETCHING INGREDIENTS", it.toString()) }
 
-    override suspend fun getRecipeInstructionsById(id: Int): List<Steps> =
+    override suspend fun getRecipeInstructionsById(id: Int): List<FullInformationRecipe.Instructions.Steps> =
         foodApi.getRecipeInstructionsById(id, API_KEY).first().steps.mapNotNull { instructionAdapter.adapt(it) }
 
     override suspend fun getRandomTrivia(): String = foodApi.getRandomFoodTrivia(API_KEY).text?:"no trivia sir"

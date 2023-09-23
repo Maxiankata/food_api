@@ -1,10 +1,12 @@
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.Steps
+import com.example.myapplication.data.Response
+import com.example.myapplication.data.Response.FullInformationRecipe.Instructions.Steps
 
 class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAdapter.InstructionPagerViewHolder>() {
     class InstructionPagerViewHolder (view: View): RecyclerView.ViewHolder(view){
@@ -13,6 +15,7 @@ class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAda
         fun bind(instructions: Steps){
             stepNumber.text =instructions.number.toString()
             instruction.text = instructions.step
+            Log.d("BINDING INSTRUCTION", instructions.toString())
         }
     }
     var items = ArrayList<Steps>()
@@ -31,5 +34,7 @@ class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAda
         items.clear()
         items.addAll(newInstructions!!)
         notifyDataSetChanged()
+        Log.d("UPDATING INSTRUCTION", items.toString())
+
     }
 }
