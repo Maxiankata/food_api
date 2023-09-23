@@ -10,8 +10,8 @@ class FullInformationToRoomAdapter: Adapter<Response.FullInformationRecipe, Food
         return FoodRoomInfo(t.id, t.title!!, t.image!!)
     }
 }
-class RoomToFullInformationAdapter:Adapter<FoodRoomInfo, Response.FullInformationRecipe>{
-    override fun adapt(t: FoodRoomInfo): Response.FullInformationRecipe? {
-        return Response.FullInformationRecipe(t.id, t.name!!, t.image!!)
+class RoomToFullFrontFoodAdapter:Adapter<FoodRoomInfo, FrontFood>{
+    override fun adapt(t: FoodRoomInfo): FrontFood? {
+        return FrontFood(t.id, t.name!!, t.image!!)
     }
 }
