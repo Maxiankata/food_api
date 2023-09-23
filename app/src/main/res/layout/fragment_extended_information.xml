@@ -23,7 +23,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="90dp"
         android:layout_marginLeft="20dp"
-        android:scaleType="centerCrop"
+        android:foregroundGravity="center"
+        android:scaleType="fitCenter"
         app:layout_constraintDimensionRatio="1:1"
         />
     <TextView
