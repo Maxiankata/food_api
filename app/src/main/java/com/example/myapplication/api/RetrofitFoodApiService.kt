@@ -65,12 +65,6 @@ class RetrofitFoodApiService : FoodApiService {
 
         foodApi = retrofit.create()
     }
-//    private val favoritesEntryFlow = flow { dataSource.getDogs().forEach { emit(it) } }
-//        .mapNotNull { dogEntryToDogtionaryEntryAdapter.adapt(it) }
-//        .aggregate()
-//        .shareIn(MainScope(), SharingStarted.Lazily, 1)
-//
-//    override suspend fun getDogtionaryEntriesFlow(): Flow<List<FullInformationRecipe>> = favoritesEntryFlow
 
     override suspend fun getFoodByComplexSearch(query: String): List<FrontFood> =
         foodApi.getFoodByComplexSearch(API_KEY, query).results.mapNotNull { adapter.adapt(it!!) }
@@ -82,7 +76,6 @@ class RetrofitFoodApiService : FoodApiService {
 
     override suspend fun getRecipeById(id: Int): FullInformationRecipe =
         fullInformationAdapter.adapt(foodApi.getRecipeById(id, API_KEY))!!
-            .also { Log.d("SPAS", it.toString()) }
 
     override suspend fun findByNutrients(minCarbs: Int, maxCarbs: Int, minFat: Int, maxFat: Int, minCalories: Int, maxCalories: Int, minProtein: Int, maxProtein: Int
     ): List<FrontFood> {
@@ -92,7 +85,6 @@ class RetrofitFoodApiService : FoodApiService {
     override suspend fun findByIngredients(ingredient: String): List<FrontFood> =
         foodApi.getRecipesByIngredients(API_KEY, ingredient)
             .mapNotNull { adapter.adapt(it) }
-            .also { Log.d("FETCHING INGREDIENTS", it.toString()) }
 
     override suspend fun getRecipeInstructionsById(id: Int): List<FullInformationRecipe.Instructions.Steps> =
         foodApi.getRecipeInstructionsById(id, API_KEY).first().steps.mapNotNull { instructionAdapter.adapt(it) }
