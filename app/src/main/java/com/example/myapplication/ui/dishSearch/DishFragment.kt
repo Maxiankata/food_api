@@ -103,6 +103,7 @@ class DishFragment : Fragment() {
 
                         }else{
                             query?.let {
+                                Log.d("FETCHING FOOD: ", dishViewModel.fetchIngredients(query).toString())
                                 dishViewModel.fetchIngredients(query)
                                 Log.d("FOUND INGREDIENTS LOL", query.toString())
                             }

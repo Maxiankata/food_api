@@ -60,10 +60,12 @@ class FragmentExtendedInformation : Fragment() {
         instructionViewPagerAdapter = InstructionViewPagerAdapter()
         ingredientsViewPagerAdapter = IngredientsViewPagerAdapter()
 
+        otherRoomAdapter = RoomToFullFrontFoodAdapter()
+
         val foodDatabase = MainActivity.getDatabaseInstance()
         val foodBase = foodDatabase.dao()
 
-
+        val roomToFullFrontFoodAdapter = RoomToFullFrontFoodAdapter()
         roomAdapter = FullInformationToRoomAdapter()
 
         binding.ingredientsViewPager.adapter = ingredientsViewPagerAdapter
@@ -96,6 +98,17 @@ class FragmentExtendedInformation : Fragment() {
                         }
                     }
                 }
+                favoritedButton.setOnClickListener{
+                    starLayout.visibility = VISIBLE
+                    starLayoutChecked.visibility = GONE
+                    val foodRoomInfo = roomAdapter.adapt(recipe)
+                    foodRoomInfo?.let {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            Log.d("FOODBASED", foodRoomInfo.toString())
+                            foodBase.deleteFood(it)
+                        }
+                    }
+                }
 
             }
 
@@ -119,8 +132,7 @@ class FragmentExtendedInformation : Fragment() {
             favoritedButton.apply {
 
                 setOnClickListener{
-                    starLayout.visibility = VISIBLE
-                    starLayoutChecked.visibility = GONE
+
                 }
             }
             (activity as? MainActivity)?.setFabVisibility(View.GONE)
