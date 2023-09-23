@@ -20,4 +20,5 @@ class ExtendedInformationViewModel(application: Application) : AndroidViewModel(
             Log.d("FETCH", "FOOD FETCHED")
         }
     }
+
 }
