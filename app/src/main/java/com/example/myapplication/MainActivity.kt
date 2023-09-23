@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.favorite_button, R.id.Home, R.id.moon_icon, R.id.theme_sun),
+            setOf(R.id.favorite_button1, R.id.information_icon, R.id.theme_moon, R.id.theme_sun),
             drawerLayout
         )
         sharedPreferences = getSharedPreferences("MODE",Context.MODE_PRIVATE)
@@ -57,13 +57,12 @@ class MainActivity : AppCompatActivity() {
         val menu: Menu = navView.menu
         val moonMenuItem: MenuItem = menu.findItem(R.id.theme_moon)
         val sunMenuItem: MenuItem = menu.findItem(R.id.theme_sun)
-        val favoritesMenuItem: MenuItem = menu.findItem(R.id.favorite_button)
-        val informationIcon = menu.findItem(R.id.Home)
+        val favoritesMenuItem: MenuItem = menu.findItem(R.id.favorite_button1)
+        val informationIcon = menu.findItem(R.id.information_icon)
         val informationExtended :MenuItem = menu.findItem(R.id.information_extended)
         val textView = informationExtended.actionView as? TextView
-        val isMoonIconVisible = sharedPreferences.getBoolean("moonIconVisible", false)
+        val isMoonIconVisible = sharedPreferences.getBoolean("moonIconVisible", true)
 
-        textView?.setTextColor(ContextCompat.getColor(this, R.color.black))
         informationExtended.isVisible=false
         moonMenuItem.isVisible = !isMoonIconVisible
         sunMenuItem.isVisible = isMoonIconVisible
@@ -100,7 +99,16 @@ class MainActivity : AppCompatActivity() {
             sunMenuItem.isVisible = false
             true }
         }
+        favoritesMenuItem.apply {
+            setOnMenuItemClickListener{
+                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                navController.navigate(R.id.fragmentFavoritesInflater)
 
+                true
+            }
+
+
+        }
 
     }
 

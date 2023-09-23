@@ -1,25 +1,36 @@
 package com.example.myapplication.api
+import android.util.Log
 import com.example.myapplication.FoodAdapter
+import com.example.myapplication.adapters.FullInformationAdapter
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.data.RecipeResponse
+import com.example.myapplication.data.TextPredictor
+import com.example.myapplication.adapters.TextPredictionAdapterAdapter
+import com.example.myapplication.data.FoodFullInformation
+import com.example.myapplication.data.Response.FullInformationRecipe
+//import com.example.myapplication.data.ApiResponse
+import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 class RetrofitFoodApiService : FoodApiService{
 
     companion object {
-    const val API_KEY = "588f5e88f6af47eaba04f38d98e281ff"
-    const val API_HOST = "https://api.spoonacular.com/recipes/"
+//    const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a"
+        const val API_KEY = "12e762759f344271b7abc1a4da9400e8"
+
+        const val API_HOST = "https://api.spoonacular.com/recipes/"
 
         private var apiSingleton: RetrofitFoodApiService? = null
         private var adapter = FoodAdapter()
+        var predictionAdapter = TextPredictionAdapterAdapter()
+        var fullInformationAdapter = FullInformationAdapter()
 
-        // Corrected the return type to RetrofitFoodApiService
         fun getApi(): RetrofitFoodApiService {
             return apiSingleton ?: RetrofitFoodApiService().also {
                 apiSingleton = it
@@ -40,14 +51,20 @@ class RetrofitFoodApiService : FoodApiService{
     }
 
 
-    override suspend fun getRecipesByComplexSearch(query: String): List<FrontFood> = foodApi.getItems(API_KEY, query).results.mapNotNull { adapter.adapt(it!!) }
-    override suspend fun getRandomRecipe(): FrontFood? = foodApi.getRandomRecipe(API_KEY).results.first()?.let{ adapter.adapt(it)}
+    override suspend fun getFoodByComplexSearch(query: String): List<FrontFood> = foodApi.getItems(API_KEY, query).results.mapNotNull { adapter.adapt(it!!) }
+    override suspend fun getRandomRecipe(): FullInformationRecipe = fullInformationAdapter.adapt(foodApi.getRandomRecipe(API_KEY).first())!!
+    override suspend fun getPrediction(query: String): List<TextPredictor> = foodApi.getPredictionText(API_KEY, query).mapNotNull { predictionAdapter.adapt(it) }
 
+    override suspend fun getRecipeById(id:Int): FullInformationRecipe = fullInformationAdapter.adapt(foodApi.getRecipeById(id, API_KEY))!!.also { Log.d("SPAS", it.toString()) }
 
 }
 interface FoodApi {
     @GET("complexSearch")
     suspend fun getItems(@Query("apiKey") apiKey: String, @Query("query") query: String, @Query("number") number: Int = 1): RecipeResponse
     @GET("random")
-    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): RecipeResponse
+    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): ArrayList<FoodFullInformation>
+    @GET("autocomplete")
+    suspend fun getPredictionText(@Query("apiKey") apiKey: String, @Query("query") query: String, @Query("number") number: Int = 5): List<TextPredictorJsonStealer>
+    @GET("{id}/information")
+    suspend fun getRecipeById(@Path("id") id:Int, @Query("apiKey") apiKey: String):FoodFullInformation
 }

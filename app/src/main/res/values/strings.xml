@@ -9,6 +9,17 @@
     <string name="open_sidebar">open</string>
     <string name="close_sidebar">close</string>
     <string name="favorites">Favorites</string>
+    <string name="time">Time:</string>
+    <string name="dairyFree">Dairy free:</string>
+    <string name="glutenFree">Gluten free:</string>
+    <string name="vegan">Vegan:</string>
+    <string name="servings">Servings:</string>
+    <string name="readyInMinutes">Ready in \nminutes:</string>
+    <string name="recipe_search">Recipe Search</string>
+    <string name="recipe_information">Recipe Information</string>
+    <string name="fragment_weekly">Weekly Recipes :)</string>
+    <string name="recipe_name">Name:</string>
+
 
     <string name="extended_information">This is an app created by me :) for the purpose of devcamp i shall rush it uwuwuwuwu</string>
     <string name="menu_home">Home</string>

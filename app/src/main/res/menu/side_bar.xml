@@ -6,7 +6,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/Home"
+            android:id="@+id/information_icon"
             android:icon="@drawable/information_sign"
             android:title="@string/information"
             android:iconTint="@color/red_aggressive"
@@ -15,8 +15,9 @@
             android:id="@+id/information_extended"
             android:title=""
             app:actionLayout="@layout/information_extended" />
+
         <item
-            android:id="@+id/favorite_button"
+            android:id="@+id/favorite_button1"
             android:icon="@drawable/baseline_star_24"
             android:title="@string/favorites"
             android:iconTint="@color/red_aggressive"

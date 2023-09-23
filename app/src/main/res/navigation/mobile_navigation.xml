@@ -3,19 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/Home">
+    app:startDestination="@+id/information_icon">
 
     <fragment
-        android:id="@+id/Home"
+        android:id="@+id/information_icon"
         android:name="com.example.myapplication.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/searchInflater"
+            app:destination="@id/IngredientSearch"/>
+        <action
+            android:id="@+id/fragmentFavoritesInflater"
+            app:destination="@id/fragmentFavorites"/>
+        <action
+            android:id="@+id/weeklyInflater"
+            app:destination="@id/weekly_recommended"/>
+        <action
+            android:id="@+id/dishInflater"
+            app:destination="@id/fragmentDishName"/>
+        <action
+            android:id="@+id/action_Home_to_blahblah"
+            app:destination="@id/blahblah" />
+        <action
+            android:id="@+id/action_information_icon_to_fragmentWeekly"
+            app:destination="@id/fragmentWeekly" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/IngredientSearch"
         android:name="com.example.myapplication.ui.Ingredients.IngredientsFragment"
-        android:label="fragment_ingredients"
-        tools:layout="@layout/fragment_ingredients" />
+        android:label="@string/recipe_search"
+        tools:layout="@layout/fragment_ingredients">
+        <action
+            android:id="@+id/action_IngredientSearch_to_blahblah"
+            app:destination="@id/blahblah" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentDishName"
         android:name="com.example.myapplication.FragmentDishName"
@@ -23,14 +47,28 @@
         tools:layout="@layout/fragment_dish_name" />
     <fragment
         android:id="@+id/fragmentNutrientSearch"
-        android:name="com.example.myapplication.ui.nutrients.FragmentFavoritesSearch"
-        android:label="fragment_nutrient_search"
+        android:name="com.example.myapplication.ui.nutrients.FragmentNutrientSearch"
+        android:label="@string/favorites"
         tools:layout="@layout/fragment_nutrient_search" />
     <fragment
         android:id="@+id/fragmentFavorites"
-        android:name="com.example.myapplication.FragmentFavorites"
-        android:label="fragment_favorites"
+        android:name="com.example.myapplication.ui.favorites.FragmentFavorites"
+        android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/blahblah"
+        android:name="com.example.myapplication.ui.extendedInformation.FragmentExtendedInformation"
+        android:label="Recipe Information"
+        tools:layout="@layout/fragment_blahblah" />
+    <fragment
+        android:id="@+id/fragmentWeekly"
+        android:name="com.example.myapplication.ui.weekly.FragmentWeekly"
+        android:label="@string/fragment_weekly"
+        tools:layout="@layout/fragment_weekly" >
+        <action
+            android:id="@+id/action_fragmentWeekly_to_blahblah"
+            app:destination="@id/blahblah" />
+    </fragment>
 
 
 </navigation>
