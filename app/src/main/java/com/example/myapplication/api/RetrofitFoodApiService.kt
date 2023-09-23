@@ -111,7 +111,7 @@ interface FoodApi {
     suspend fun getFoodByComplexSearch(
         @Query("apiKey") apiKey: String,
         @Query("query") query: String,
-        @Query("number") number: Int = 6
+        @Query("number") number: Int = 1
     ): RecipeResponse
 
     @GET("recipes/random")
@@ -132,7 +132,7 @@ interface FoodApi {
     ): FoodFullInformation
 
     @GET("findByIngredients")
-    suspend fun getRecipesByIngredients(@Query("apiKey") apiKey: String, @Query("ingredients") query: String, @Query("number") number: Int = 6): List<Food>
+    suspend fun getRecipesByIngredients(@Query("apiKey") apiKey: String, @Query("ingredients") query: String, @Query("number") number: Int = 1): List<Food>
 
 
     @GET("informationBulk")
