@@ -24,17 +24,15 @@ import com.example.myapplication.adapters.OptionRecyclerAdapter
 import com.example.myapplication.adapters.TextPredictionAdapter
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.databinding.FragmentIngredientSearchBinding
+import com.example.myapplication.databinding.FragmentRecipeNameBinding
 
 
 class DishFragment : Fragment() {
-    private var _binding: FragmentIngredientSearchBinding? = null
+    private var _binding: FragmentRecipeNameBinding? = null
     private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
 
     private lateinit var recipeContainerAdapter: RecipeContainerAdapter
-    private val ingredientsViewModel:IngredientsViewModel by viewModels()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,7 +42,7 @@ class DishFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentIngredientSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentRecipeNameBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,8 +81,8 @@ class DishFragment : Fragment() {
                 setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                     override fun onQueryTextSubmit(query: String?): Boolean {
                         query?.let{
-                            ingredientsViewModel.fetchFood(query)
-
+                            ingredientsViewModel.fetchIngredients(query)
+                            Log.d("FOUND INGREDIENTS LOL", query.toString())
                         }
                         textPredictionRecycler.visibility=GONE
                         return true

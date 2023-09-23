@@ -10,6 +10,7 @@ import com.example.myapplication.data.FrontFood
 import com.example.myapplication.data.RecipeResponse
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.adapters.TextPredictionAdapterAdapter
+import com.example.myapplication.data.Food
 import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.IngredientResponse
 //import com.example.myapplication.data.Response.Steps
@@ -30,8 +31,8 @@ import retrofit2.http.Query
 class RetrofitFoodApiService : FoodApiService {
 
     companion object {
-        const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a"
-//        const val API_KEY = "12e762759f344271b7abc1a4da9400e8"
+//        const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a"
+        const val API_KEY = "12e762759f344271b7abc1a4da9400e8"
 //        const val API_KEY = "0e0a2be67fe14660b09c10952fe86678"
 
         const val API_HOST = "https://api.spoonacular.com/recipes/"
@@ -85,22 +86,14 @@ class RetrofitFoodApiService : FoodApiService {
         fullInformationAdapter.adapt(foodApi.getRecipeById(id, API_KEY))!!
             .also { Log.d("SPAS", it.toString()) }
 
-    override suspend fun findByNutrients(
-        minCarbs: Int,
-        maxCarbs: Int,
-        minFat: Int,
-        maxFat: Int,
-        minCalories: Int,
-        maxCalories: Int,
-        minProtein: Int,
-        maxProtein: Int
+    override suspend fun findByNutrients(minCarbs: Int, maxCarbs: Int, minFat: Int, maxFat: Int, minCalories: Int, maxCalories: Int, minProtein: Int, maxProtein: Int
     ): List<FrontFood> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun findByIngredients(query: String): List<FrontFood> =
-        foodApi.findByIngredients(API_KEY, query)
-            .mapNotNull { ingredientResponseToFrontFood.adapt(it) }
+    override suspend fun findByIngredients(ingredient: String): List<FrontFood> =
+        foodApi.getRecipesByIngredients(API_KEY, ingredient)
+            .mapNotNull { adapter.adapt(it) }
             .also { Log.d("FETCHING INGREDIENTS", it.toString()) }
 
     override suspend fun getRecipeBulk(): Flow<List<FullInformationRecipe>> {
@@ -142,11 +135,8 @@ interface FoodApi {
     ): FoodFullInformation
 
     @GET("findByIngredients")
-    suspend fun findByIngredients(
-        @Query("apiKey") apiKey: String,
-        @Query("query") query: String,
-        @Query("number") number: Int = 1
-    ): List<IngredientResponse>
+    suspend fun getRecipesByIngredients(@Query("apiKey") apiKey: String, @Query("ingredients") query: String, @Query("number") number: Int = 6): List<Food>
+
 
     @GET("informationBulk")
     suspend fun getInformationBulk(
