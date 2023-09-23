@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentExtendedInformationBinding
 import com.example.myapplication.room.FullInformationToRoomAdapter
-import com.example.myapplication.room.RoomToFullInformationAdapter
+import com.example.myapplication.room.RoomToFullFrontFoodAdapter
 import com.example.myapplication.setRoundedCorners
 import com.example.myapplication.ui.IngredientsFragment.RecipeContainerAdapter
 import com.example.myapplication.ui.ingredientsInformation.IngredientsViewPagerAdapter
@@ -30,7 +30,7 @@ class FragmentExtendedInformation : Fragment() {
     lateinit var instructionViewPagerAdapter: InstructionViewPagerAdapter
     lateinit var ingredientsViewPagerAdapter:IngredientsViewPagerAdapter
     lateinit var roomAdapter: FullInformationToRoomAdapter
-    lateinit var otherRoomAdapter: RoomToFullInformationAdapter
+    lateinit var otherRoomAdapter: RoomToFullFrontFoodAdapter
 
 
 

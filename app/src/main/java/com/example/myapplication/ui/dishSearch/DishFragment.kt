@@ -77,9 +77,7 @@ class DishFragment : Fragment() {
             }
         }
 
-        dishViewModel._foods.observe(viewLifecycleOwner){
 
-        }
         binding.apply {
             imageScroller.setExplicableRoundedCorners(10F, 50F, 10F, 50F)
             textInput.setRoundedCorners(20F)
