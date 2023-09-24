@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.AnalyzedInstruction
-//import com.example.myapplication.data.NewApiSteps
-//import com.example.myapplication.data.Response.FullInformationRecipe.Instructions.Steps
+
 import com.example.myapplication.data.Step
 
 class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAdapter.InstructionPagerViewHolder>() {

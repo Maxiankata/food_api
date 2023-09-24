@@ -1,25 +1,17 @@
 package com.example.myapplication.ui.favorites
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.MainActivity
 import com.example.myapplication.data.FrontFood
-import com.example.myapplication.getApiService
 import com.example.myapplication.room.RoomToFullFrontFoodAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FavoritesViewModel(application: Application) : AndroidViewModel(application) {
-    private val _api = application.getApiService()
-    val _foods = MutableLiveData<List<FrontFood>>()
-    val foods: LiveData<List<FrontFood>> get() = _foods
-
     private val _foodListLiveData = MutableLiveData<List<FrontFood>>()
     val foodListLiveData: LiveData<List<FrontFood>> get() = _foodListLiveData
 
