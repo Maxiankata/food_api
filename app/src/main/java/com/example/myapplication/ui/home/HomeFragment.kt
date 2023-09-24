@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -39,11 +40,21 @@ class HomeFragment : Fragment() {
         binding.apply {
 
             homeViewModel.trivia.observe(viewLifecycleOwner){
-//                binding.trivia.text = "$it :O"
+                binding.trivia.text = "$it :O"
             }
+            homeViewModel.recipe.observe(viewLifecycleOwner){
+                Glide.with(imageScroller)
+                    .load(it.image)
+                    .into(imageScroller)
+                var item = it.id
+                imageScroller.setOnClickListener {
+                        findNavController().navigate(R.id.action_Home_to_blahblah, bundleOf("recipe_id" to item))
+                }
 
+            }
             imageScroller.apply {
                 setExplicableRoundedCorners(120F, 10F, 120F, 10F)
+
             }
             ingredients.apply {
                 setExplicableRoundedCorners(80f, 80f, 0f, 0f)

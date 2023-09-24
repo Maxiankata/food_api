@@ -19,13 +19,15 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     private val _trivia = MutableLiveData<String>()
     val trivia: LiveData<String> get() = _trivia
     val recipe: LiveData<FrontFood> get() = _recipe
-//    init {
-//        fetchRecipe()
-//    }
-//    private fun fetchRecipe() {
-//        viewModelScope.launch {
-//            val result = api.getRandomTrivia()
-//            _trivia.postValue(result)
-//        }
-//    }
+    init {
+        fetchRecipe()
+    }
+    private fun fetchRecipe() {
+        viewModelScope.launch {
+            val result = api.getRandomTrivia()
+            _trivia.postValue(result)
+            val random = api.getRandomRecipe()
+            _recipe.postValue(random.first())
+        }
+    }
 }

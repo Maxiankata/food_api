@@ -6,7 +6,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/information_icon"
+            android:id="@+id/Home"
             android:icon="@drawable/information_sign"
             android:title="@string/information"
             android:iconTint="@color/red_aggressive"
