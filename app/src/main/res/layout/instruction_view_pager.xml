@@ -17,6 +17,7 @@
 
     <TextView
         style="@style/TextAppearance"
+
     android:layout_marginLeft="10dp"
         android:text="@string/dish_name"
         android:id="@+id/step_number"
@@ -27,14 +28,15 @@
         app:layout_constraintTop_toTopOf="@+id/step" />
 
     <TextView
-        style="@style/TextAppearance"
-        android:textSize="24sp"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/instruction"
+        style="@style/TextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/step"
-        app:layout_constraintTop_toBottomOf="@+id/step"
 
-        />
+        app:layout_constraintTop_toBottomOf="@+id/step" />
 </androidx.constraintlayout.widget.ConstraintLayout>
