@@ -85,6 +85,18 @@ class FragmentExtendedInformation : Fragment() {
                 ingredientsViewPager.setRoundedCorners(20F)
                 instructionsViewPager.setRoundedCorners(20F)
 
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val starCheck = foodBase.getIngredientById(recipe.id)
+
+                    if(starCheck){
+                        starLayoutChecked.visibility = VISIBLE
+                        starLayout.visibility = GONE
+                    }else{
+                        starLayoutChecked.visibility = GONE
+                        starLayout.visibility = VISIBLE
+                    }
+                }
+
                 favoriteButton.setOnClickListener {
                     starLayoutChecked.visibility = VISIBLE
                     starLayout.visibility = GONE
