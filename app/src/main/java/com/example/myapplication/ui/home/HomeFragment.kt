@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.setExplicableRoundedCorners
@@ -21,7 +22,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,9 +34,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding.apply {
-
+            imageView.setOnClickListener {
+                unlockDrawer()
+            }
             homeViewModel.trivia.observe(viewLifecycleOwner){
                 binding.trivia.text = "$it :O"
             }
@@ -69,7 +73,14 @@ class HomeFragment : Fragment() {
             }
         }
     }
+    fun lockDrawer() {
+        (activity as? MainActivity)?.lockDrawer()
+    }
+    fun unlockDrawer() {
+        (activity as? MainActivity)?.unlockDrawer()
+    }
     override fun onDestroyView() {
+        lockDrawer()
         super.onDestroyView()
         _binding = null
     }
