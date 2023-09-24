@@ -15,7 +15,8 @@ interface FoodDao {
     fun deleteFood(foodRoomInfo: FoodRoomInfo)
     @Query("SELECT * FROM foodroominfo")
     fun getAllFoods(): List<FoodRoomInfo>
-
+    @Query("SELECT * FROM foodroominfo WHERE id = :ingredientId")
+    fun getIngredientById(ingredientId: Int): Boolean
     @Query("SELECT * FROM foodroominfo ORDER BY name ASC")
     fun orderFoodByNameAsc(): LiveData<List<FoodRoomInfo>>
     @Query("SELECT * FROM foodroominfo ORDER BY name DESC")
