@@ -1,25 +1,24 @@
 package com.example.myapplication.api
 
 import NutritionResponseToFrontFoodAdapter
-import android.util.Log
 import com.example.myapplication.adapters.FoodToFrontFoodAdapter
 import com.example.myapplication.adapters.FullInformationAdapter
 import com.example.myapplication.adapters.IngredientResponseToFrontFood
-import com.example.myapplication.adapters.InstructionAdapter
+//import com.example.myapplication.adapters.InstructionAdapter
 import com.example.myapplication.data.FrontFood
-import com.example.myapplication.data.RecipeResponse
+import com.example.myapplication.data.FoodResponse
 import com.example.myapplication.data.TextPredictor
 import com.example.myapplication.adapters.TextPredictionAdapterAdapter
+import com.example.myapplication.data.AnalyzedInstruction
 import com.example.myapplication.data.Food
 import com.example.myapplication.data.FoodFullInformation
-import com.example.myapplication.data.Response.FullInformationRecipe
-import com.example.myapplication.data.FoodFullInformation.ApiInstructions
+
 import com.example.myapplication.data.ApiRandomTrivia
 import com.example.myapplication.data.RandomResponse
+import com.example.myapplication.data.Step
 //import com.example.myapplication.data.Steps
 import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
-import kotlinx.coroutines.flow.Flow
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -42,7 +41,7 @@ class RetrofitFoodApiService : FoodApiService {
         var fullInformationAdapter = FullInformationAdapter()
         var ingredientResponseToFrontFood = IngredientResponseToFrontFood()
         var nutritionResponseToFrontFoodAdapter = NutritionResponseToFrontFoodAdapter()
-        var instructionAdapter = InstructionAdapter()
+//        var instructionAdapter = InstructionAdapter()
 
 
         fun getApi(): RetrofitFoodApiService {
@@ -74,7 +73,7 @@ class RetrofitFoodApiService : FoodApiService {
     override suspend fun getPrediction(query: String): List<TextPredictor> =
         foodApi.getPredictionText(API_KEY, query).mapNotNull { predictionAdapter.adapt(it) }
 
-    override suspend fun getRecipeById(id: Int): FullInformationRecipe =
+    override suspend fun getRecipeById(id: Int): FoodFullInformation =
         fullInformationAdapter.adapt(foodApi.getRecipeById(id, API_KEY))!!
 
     override suspend fun findByNutrients(minCarbs: Int, maxCarbs: Int, minFat: Int, maxFat: Int, minCalories: Int, maxCalories: Int, minProtein: Int, maxProtein: Int
@@ -86,8 +85,8 @@ class RetrofitFoodApiService : FoodApiService {
         foodApi.getRecipesByIngredients(API_KEY, ingredient)
             .mapNotNull { adapter.adapt(it) }
 
-    override suspend fun getRecipeInstructionsById(id: Int): List<FullInformationRecipe.Instructions.Steps> =
-        foodApi.getRecipeInstructionsById(id, API_KEY).first().steps.mapNotNull { instructionAdapter.adapt(it) }
+    override suspend fun getRecipeInstructionsById(id: Int): List<Step> =
+        foodApi.getRecipeInstructionsById(id, API_KEY).first().steps
 
     override suspend fun getRandomTrivia(): String = foodApi.getRandomFoodTrivia(API_KEY).text?:"no trivia sir"
 
@@ -99,7 +98,7 @@ interface FoodApi {
         @Query("apiKey") apiKey: String,
         @Query("query") query: String,
         @Query("number") number: Int = 1
-    ): RecipeResponse
+    ): FoodResponse
 
     @GET("recipes/random")
     suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 1): RandomResponse
@@ -123,7 +122,7 @@ interface FoodApi {
 
 
     @GET("recipes{id}/analyzedInstructions")
-    suspend fun getRecipeInstructionsById(@Path("id") id: Int, @Query("apiKey") apiKey: String): List<ApiInstructions>
+    suspend fun getRecipeInstructionsById(@Path("id") id: Int, @Query("apiKey") apiKey: String): List<AnalyzedInstruction>
 
     @GET("food/trivia/random")
     suspend fun getRandomFoodTrivia(@Query("apiKey") apiKey: String): ApiRandomTrivia
