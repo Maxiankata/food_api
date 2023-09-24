@@ -12,7 +12,7 @@ interface FoodApiService {
     suspend fun getRecipeById(id:Int): FoodFullInformation
     suspend fun findByNutrients(minCarbs :Int, maxCarbs:Int ,minFat:Int , maxFat:Int , minCalories:Int , maxCalories:Int ,minProtein :Int, maxProtein:Int): List<FrontFood>
     suspend fun findByIngredients(query: String): List<FrontFood>
-    suspend fun getRecipeInstructionsById(id:Int):List<Step>
+    suspend fun getRecipeInstructionsById(id:Int):List<Step>?
     suspend fun getRandomTrivia(): String
 
 }

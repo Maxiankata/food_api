@@ -31,12 +31,20 @@ class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAda
         Log.d("UPDATING INSTRUCTION", items.toString())
 
     }
-    class InstructionPagerViewHolder (view: View): RecyclerView.ViewHolder(view){
+    class InstructionPagerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val stepNumber = view.findViewById<TextView>(R.id.step_number)
         val instruction = view.findViewById<TextView>(R.id.instruction)
-        fun bind(instructions: AnalyzedInstruction){
-            stepNumber.text =instructions.name.toString()
-            instruction.text = instructions.steps.toString()
+
+        fun bind(instructions: AnalyzedInstruction) {
+            stepNumber.text = instructions.name
+
+            // Display each step in a separate line
+            val stepsStringBuilder = StringBuilder()
+            instructions.steps?.forEachIndexed { index, step ->
+                stepsStringBuilder.append("${index + 1}. ${step.step}\n")
+            }
+            instruction.text = stepsStringBuilder.toString()
+
             Log.d("BINDING INSTRUCTION", instructions.toString())
         }
     }
