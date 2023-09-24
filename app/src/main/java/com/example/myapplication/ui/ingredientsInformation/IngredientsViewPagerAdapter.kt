@@ -41,19 +41,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.Response
+import com.example.myapplication.data.ExtendedIngredient
 
 class IngredientsViewPagerAdapter :
     RecyclerView.Adapter<IngredientsViewPagerAdapter.IngredientsPagerViewHolder>() {
     class IngredientsPagerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val ingredient = view.findViewById<TextView>(R.id.ingredient_text_field)
 
-        fun bind(ingredients: Response.FullInformationRecipe.Ingredients) {
-            ingredient.text = ingredients.name.toString()
+        fun bind(ingredients: ExtendedIngredient) {
+            ingredient.text = ingredients.original.toString()
         }
     }
 
-    var items = ArrayList<Response.FullInformationRecipe.Ingredients>()
+    var items = ArrayList<ExtendedIngredient>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = IngredientsPagerViewHolder(
         LayoutInflater.from(parent.context)
@@ -67,7 +67,7 @@ class IngredientsViewPagerAdapter :
         holder.bind(items[position])
     }
 
-    fun updateItems(newIngredients: List<Response.FullInformationRecipe.Ingredients>?) {
+    fun updateItems(newIngredients: List<ExtendedIngredient>?) {
         items.clear()
         items.addAll(newIngredients!!)
         notifyDataSetChanged()

@@ -5,12 +5,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.Response
-import com.example.myapplication.data.Response.FullInformationRecipe.Instructions.Steps
+import com.example.myapplication.data.AnalyzedInstruction
+//import com.example.myapplication.data.NewApiSteps
+//import com.example.myapplication.data.Response.FullInformationRecipe.Instructions.Steps
+import com.example.myapplication.data.Step
 
 class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAdapter.InstructionPagerViewHolder>() {
 
-    var items = ArrayList<Steps>()
+    var items = ArrayList<AnalyzedInstruction>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= InstructionPagerViewHolder(
         LayoutInflater.from(parent.context)
@@ -23,7 +25,7 @@ class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAda
         val instruction = items[position]
         holder.bind(instruction)
     }
-    fun updateItems(newInstructions: List<Steps>){
+    fun updateItems(newInstructions: List<AnalyzedInstruction>){
         items.addAll(newInstructions)
         notifyDataSetChanged()
         Log.d("UPDATING INSTRUCTION", items.toString())
@@ -32,9 +34,9 @@ class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAda
     class InstructionPagerViewHolder (view: View): RecyclerView.ViewHolder(view){
         val stepNumber = view.findViewById<TextView>(R.id.step_number)
         val instruction = view.findViewById<TextView>(R.id.instruction)
-        fun bind(instructions: Steps){
-            stepNumber.text =instructions.number.toString()
-            instruction.text = instructions.step
+        fun bind(instructions: AnalyzedInstruction){
+            stepNumber.text =instructions.name.toString()
+            instruction.text = instructions.steps.toString()
             Log.d("BINDING INSTRUCTION", instructions.toString())
         }
     }

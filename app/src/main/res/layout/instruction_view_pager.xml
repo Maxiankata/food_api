@@ -12,8 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/step"
-        android:textSize="36dp"
-        android:textColor="@color/black"
+        android:textSize="24sp"
         />
 
     <TextView
@@ -21,7 +20,7 @@
     android:layout_marginLeft="10dp"
         android:text="@string/dish_name"
         android:id="@+id/step_number"
-        android:textSize="36dp"
+        android:textSize="24sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/step"
@@ -29,7 +28,7 @@
 
     <TextView
         style="@style/TextAppearance"
-        android:textSize="36dp"
+        android:textSize="24sp"
         android:layout_marginTop="10dp"
         android:id="@+id/instruction"
         android:layout_width="0dp"
