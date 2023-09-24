@@ -14,14 +14,31 @@
         app:layout_constraintStart_toStartOf="parent"
         style="@style/SubBackground"
         />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/item_recycler_view"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="80dp"
-        />
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            />
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        style="@style/TextAppearance"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:text="You can scroll recipes"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/scroller" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
