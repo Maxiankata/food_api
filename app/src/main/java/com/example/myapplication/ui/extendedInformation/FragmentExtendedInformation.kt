@@ -110,8 +110,8 @@ class FragmentExtendedInformation : Fragment() {
 
 
             ingredientsViewPagerAdapter.updateItems(recipe.extendedIngredients)
-            instructionViewPagerAdapter.updateItems(recipe.analyzedInstructions)
-
+            val steps = recipe.analyzedInstructions?.flatMap { it.steps!! }!!
+            instructionViewPagerAdapter.updateItems(steps)
             Log.d("INSTRUCTIONS", recipe.analyzedInstructions.toString())
 
         }

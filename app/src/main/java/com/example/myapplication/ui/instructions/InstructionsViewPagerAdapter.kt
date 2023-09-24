@@ -12,40 +12,37 @@ import com.example.myapplication.data.Step
 
 class InstructionViewPagerAdapter : RecyclerView.Adapter<InstructionViewPagerAdapter.InstructionPagerViewHolder>() {
 
-    var items = ArrayList<AnalyzedInstruction>()
+    private var items = ArrayList<Step>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= InstructionPagerViewHolder(
-        LayoutInflater.from(parent.context)
-        .inflate(R.layout.instruction_view_pager, parent, false))
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        InstructionPagerViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.instruction_view_pager, parent, false)
+        )
 
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: InstructionPagerViewHolder, position: Int) {
-        val instruction = items[position]
-        holder.bind(instruction)
+        val step = items[position]
+        holder.bind(step)
     }
-    fun updateItems(newInstructions: List<AnalyzedInstruction>){
-        items.addAll(newInstructions)
+
+    fun updateItems(newSteps: List<Step>) {
+        items.clear()
+        items.addAll(newSteps)
         notifyDataSetChanged()
         Log.d("UPDATING INSTRUCTION", items.toString())
-
     }
+
     class InstructionPagerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val stepNumber = view.findViewById<TextView>(R.id.step_number)
         val instruction = view.findViewById<TextView>(R.id.instruction)
 
-        fun bind(instructions: AnalyzedInstruction) {
-            stepNumber.text = instructions.name
+        fun bind(step: Step) {
+            stepNumber.text = step.number.toString()
+            instruction.text = step.step
 
-            // Display each step in a separate line
-            val stepsStringBuilder = StringBuilder()
-            instructions.steps?.forEachIndexed { index, step ->
-                stepsStringBuilder.append("${index + 1}. ${step.step}\n")
-            }
-            instruction.text = stepsStringBuilder.toString()
-
-            Log.d("BINDING INSTRUCTION", instructions.toString())
+            Log.d("BINDING INSTRUCTION", step.toString())
         }
     }
 }
