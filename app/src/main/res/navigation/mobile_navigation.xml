@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/information_icon">
+    app:startDestination="@+id/Home">
 
     <fragment
-        android:id="@+id/information_icon"
+        android:id="@+id/Home"
         android:name="com.example.myapplication.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
