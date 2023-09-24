@@ -1,8 +1,6 @@
 package com.example.myapplication.adapters
 
-//import com.example.myapplication.data.ApiIngredients
-//import com.example.myapplication.data.ApiSteps
-//import com.example.myapplication.data.ApiResponse
+
 import com.example.myapplication.data.AnalyzedInstruction
 import com.example.myapplication.data.ExtendedIngredient
 import com.example.myapplication.data.FoodFullInformation
