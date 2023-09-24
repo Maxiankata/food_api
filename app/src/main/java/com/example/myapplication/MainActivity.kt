@@ -28,7 +28,18 @@ class MainActivity : AppCompatActivity() {
     lateinit var editor: SharedPreferences.Editor
 
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+    }
+    fun lockDrawer() {
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    }
+    fun unlockDrawer() {
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,6 +58,7 @@ class MainActivity : AppCompatActivity() {
             visibility = GONE
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
+
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(
@@ -110,8 +122,6 @@ class MainActivity : AppCompatActivity() {
 
                 true
             }
-
-
         }
 
     }
@@ -124,12 +134,9 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
     companion object {
-
         private lateinit var db: FoodDB
         fun getDatabaseInstance(): FoodDB {
             return db
         }
     }
-
-
 }
