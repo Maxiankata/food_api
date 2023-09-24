@@ -85,7 +85,7 @@ class RetrofitFoodApiService : FoodApiService {
         foodApi.getRecipesByIngredients(API_KEY, ingredient)
             .mapNotNull { adapter.adapt(it) }
 
-    override suspend fun getRecipeInstructionsById(id: Int): List<Step> =
+    override suspend fun getRecipeInstructionsById(id: Int): List<Step>? =
         foodApi.getRecipeInstructionsById(id, API_KEY).first().steps
 
     override suspend fun getRandomTrivia(): String = foodApi.getRandomFoodTrivia(API_KEY).text?:"no trivia sir"

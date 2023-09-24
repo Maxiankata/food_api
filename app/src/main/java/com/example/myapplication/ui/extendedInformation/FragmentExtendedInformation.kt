@@ -66,6 +66,9 @@ class FragmentExtendedInformation : Fragment() {
         binding.ingredientsViewPager.adapter = ingredientsViewPagerAdapter
 
         binding.instructionsViewPager.adapter = instructionViewPagerAdapter
+
+
+
         informationViewModel.foods.observe(viewLifecycleOwner) { recipe ->
             Glide.with(this)
                 .load(recipe.image)
@@ -108,6 +111,7 @@ class FragmentExtendedInformation : Fragment() {
 
             ingredientsViewPagerAdapter.updateItems(recipe.extendedIngredients)
             instructionViewPagerAdapter.updateItems(recipe.analyzedInstructions)
+
             Log.d("INSTRUCTIONS", recipe.analyzedInstructions.toString())
 
         }
