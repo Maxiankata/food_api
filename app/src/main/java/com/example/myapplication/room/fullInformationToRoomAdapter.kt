@@ -1,12 +1,13 @@
 package com.example.myapplication.room
 
 import com.example.myapplication.adapters.Adapter
+import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.FrontFood
-import com.example.myapplication.data.Response
 
 
-class FullInformationToRoomAdapter: Adapter<Response.FullInformationRecipe, FoodRoomInfo> {
-    override fun adapt(t: Response.FullInformationRecipe): FoodRoomInfo? {
+
+class FullInformationToRoomAdapter: Adapter<FoodFullInformation, FoodRoomInfo> {
+    override fun adapt(t: FoodFullInformation): FoodRoomInfo? {
         return FoodRoomInfo(t.id, t.title!!, t.image!!)
     }
 }

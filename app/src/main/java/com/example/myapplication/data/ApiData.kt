@@ -6,38 +6,6 @@ data class ApiRandomTrivia(
     @SerializedName("text") val text:String? = null
 )
 
-data class FoodFullInformation(
-    @SerializedName("id") val id: Int,
-    @SerializedName("title") val title: String? = null,
-    @SerializedName("image") val image: String? = null,
-    @SerializedName("readyInMinutes") val readyInMinutes: Int? = null,
-    @SerializedName("dairyFree") val dairyFree: Boolean? = null,
-    @SerializedName("glutenFree") val glutenFree: Boolean? = null,
-    @SerializedName("vegan") val vegan: Boolean? = null,
-    @SerializedName("servings") val servings: String? = null,
-    @SerializedName("extendedIngredients") val ingredients: List<ApiIngredients>? = null,
-    @SerializedName("analyzedInstructions") val instructions: List<ApiInstructions.ApiSteps>? = null,
-) {
-    data class ApiIngredients(
-        @SerializedName("original") val name: String? = null,
-    )
-
-    data class ApiInstructions(
-        @SerializedName("name") val name: String?,
-        @SerializedName("steps") val steps: List<ApiSteps>
-    ) {
-        data class ApiSteps(
-            @SerializedName("number") val number: Int? = null,
-            @SerializedName("step") val instruction: String? = null
-        ){
-            data class apiStepSteps(
-                @SerializedName("number") val number: Int? = null,
-                @SerializedName("step") val instruction: String? = null
-            )
-        }
-    }
-}
-
 data class Food(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String? = null,
@@ -73,7 +41,7 @@ data class NutritionResponse(
     @SerializedName("protein")val protein: Int,
 )
 
-data class RecipeResponse(
+data class FoodResponse(
     @SerializedName("results") val results: List<Food?> = emptyList(),
     @SerializedName("offset") val offset: Int? = 0,
     @SerializedName("number") val number: Int? = 0,

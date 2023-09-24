@@ -106,7 +106,7 @@ class FragmentExtendedInformation : Fragment() {
             }
 
 
-            ingredientsViewPagerAdapter.updateItems(recipe.ingredients)
+            ingredientsViewPagerAdapter.updateItems(recipe.extendedIngredients)
             instructionViewPagerAdapter.updateItems(recipe.analyzedInstructions)
             Log.d("INSTRUCTIONS", recipe.analyzedInstructions.toString())
 
