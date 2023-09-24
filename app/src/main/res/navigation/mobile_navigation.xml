@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/IngredientSearch"
         android:name="com.example.myapplication.ui.IngredientsFragment.DishFragment"
-        android:label="@string/dish_name"
+        android:label="@string/Recipe_Search"
         tools:layout="@layout/fragment_recipe_name">
         <action
             android:id="@+id/action_IngredientSearch_to_blahblah"

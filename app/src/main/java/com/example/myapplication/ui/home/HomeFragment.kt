@@ -60,17 +60,9 @@ class HomeFragment : Fragment() {
                         findNavController().navigate(R.id.searchInflater)
                 }
             }
-            nutrientsSearch.apply {
 
-                setExplicableRoundedCorners(0f, 0f, 0f, 80f)
-                setOnClickListener {
-                    findNavController().navigate(R.id.fragmentFavoritesInflater)
-
-
-                }
-            }
             weeklyRecommended.apply {
-                setExplicableRoundedCorners(0f, 0f, 80f, 0f)
+                setExplicableRoundedCorners(0f, 0f, 80f, 80f)
                 setOnClickListener {
                     findNavController().navigate(R.id.action_information_icon_to_fragmentWeekly) }
 

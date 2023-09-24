@@ -46,11 +46,12 @@
             app:layout_constraintEnd_toEndOf="@id/trivia"
             />
         <TextView
-            android:layout_marginBottom="10dp"
             android:gravity="center"
             style="@style/TextAppearance"
             android:text="@string/dish_name"
             android:id="@+id/trivia"
+            android:textSize="18sp"
+            android:padding="5dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +86,7 @@
 
         <ImageButton
             android:id="@+id/ingredients"
-            android:layout_width="298dp"
+            android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
             android:background="#00000000"
@@ -112,9 +113,8 @@
             style="@style/TextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:gravity="center"
-            android:text="@string/dish_name"
+            android:text="@string/Recipe_Search"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/ingredients"
             app:layout_constraintEnd_toEndOf="@id/ingredients"
@@ -123,54 +123,15 @@
 
 
         <ImageButton
-            android:id="@+id/nutrients_search"
-            android:layout_width="140dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:background="#00000000"
-            android:scaleType="centerCrop"
-            android:src="@drawable/abs"
-            app:layout_constraintEnd_toStartOf="@id/weekly_recommended"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
-
-        <View
-            android:id="@+id/view2"
-            style="@style/SubBackground"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.5"
-            app:layout_constraintBottom_toBottomOf="@id/nutrients_text"
-            app:layout_constraintEnd_toEndOf="@id/nutrients_text"
-            app:layout_constraintStart_toStartOf="@id/nutrients_text"
-            app:layout_constraintTop_toTopOf="@id/nutrients_text" />
-
-        <TextView
-            android:id="@+id/nutrients_text"
-            style="@style/TextAppearance"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:text="@string/nutrients"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/nutrients_search"
-            app:layout_constraintEnd_toEndOf="@id/nutrients_search"
-            app:layout_constraintStart_toStartOf="@id/nutrients_search"
-            app:layout_constraintTop_toTopOf="@id/nutrients_search" />
-
-        <ImageButton
             android:id="@+id/weekly_recommended"
-            android:layout_width="140dp"
+            android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
             android:background="#00000000"
             android:scaleType="centerCrop"
             android:src="@drawable/rolls"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/nutrients_search"
+            app:layout_constraintEnd_toEndOf="@+id/ingredients"
+            app:layout_constraintStart_toStartOf="@+id/ingredients"
             app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
         <View
@@ -188,7 +149,6 @@
             style="@style/TextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:gravity="center"
             android:text="@string/weekly"
             android:textSize="20sp"
