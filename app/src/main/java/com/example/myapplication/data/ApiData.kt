@@ -30,16 +30,6 @@ data class NutritionRequest(
     @SerializedName("minFat") val minFat:Int?,
     @SerializedName("maxFat") val maxFat:Int?
 )
-data class NutritionResponse(
-
-    @SerializedName("id") val id:Int,
-    @SerializedName("title") val title: String?,
-    @SerializedName("image") val image: String?,
-    @SerializedName("calories")val calories: Int,
-    @SerializedName("carbs")val carbs: Int,
-    @SerializedName("fat")val fats: Int,
-    @SerializedName("protein")val protein: Int,
-)
 
 data class FoodResponse(
     @SerializedName("results") val results: List<Food?> = emptyList(),

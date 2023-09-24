@@ -31,9 +31,7 @@ import com.example.myapplication.ui.dishSearch.DishViewModel
 class DishFragment : Fragment() {
     private var _binding: FragmentRecipeNameBinding? = null
     private val binding get() = _binding!!
-    private val handler = Handler(Looper.getMainLooper())
 
-    private lateinit var recipeContainerAdapter: RecipeContainerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

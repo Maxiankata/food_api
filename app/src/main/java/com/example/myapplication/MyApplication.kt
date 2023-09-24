@@ -1,9 +1,7 @@
 package com.example.myapplication;
 
 import android.app.Application;
-import androidx.room.Room
 import com.example.myapplication.api.RetrofitFoodApiService
-import com.example.myapplication.room.FoodDB
 
 class MyApplication : Application() {
     val apiService: RetrofitFoodApiService by lazy {

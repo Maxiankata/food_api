@@ -2,7 +2,6 @@ package com.example.myapplication.ui.home
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,6 @@ import com.example.myapplication.setExplicableRoundedCorners
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private val homeViewModel: HomeViewModel by viewModels()
     private val binding get() = _binding!!
 
     @RequiresApi(Build.VERSION_CODES.O)

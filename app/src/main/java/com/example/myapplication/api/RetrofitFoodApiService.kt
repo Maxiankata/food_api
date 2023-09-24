@@ -1,10 +1,7 @@
 package com.example.myapplication.api
 
-import NutritionResponseToFrontFoodAdapter
 import com.example.myapplication.adapters.FoodToFrontFoodAdapter
 import com.example.myapplication.adapters.FullInformationAdapter
-import com.example.myapplication.adapters.IngredientResponseToFrontFood
-//import com.example.myapplication.adapters.InstructionAdapter
 import com.example.myapplication.data.FrontFood
 import com.example.myapplication.data.FoodResponse
 import com.example.myapplication.data.TextPredictor
@@ -16,7 +13,6 @@ import com.example.myapplication.data.FoodFullInformation
 import com.example.myapplication.data.ApiRandomTrivia
 import com.example.myapplication.data.RandomResponse
 import com.example.myapplication.data.Step
-//import com.example.myapplication.data.Steps
 import com.example.myapplication.data.TextPredictorJsonStealer
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
@@ -29,7 +25,8 @@ import retrofit2.http.Query
 class RetrofitFoodApiService : FoodApiService {
 
     companion object {
-        const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a"
+        const val API_KEY = "3b9570bd541b47848c30a9832ff6cd26"
+//        const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a" //ended for today
 //        const val API_KEY = "12e762759f344271b7abc1a4da9400e8" //ended for today
 //        const val API_KEY = "0e0a2be67fe14660b09c10952fe86678" //ended for today
 //        const val API_KEY = "39e85332726b4ce7a97b9130ee77b9ac"//ended for today
