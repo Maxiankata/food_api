@@ -1,0 +1,1 @@
+max mirishe mnogo zle 🗿
