@@ -25,10 +25,10 @@ import retrofit2.http.Query
 class RetrofitFoodApiService : FoodApiService {
 
     companion object {
-        const val API_KEY = "3b9570bd541b47848c30a9832ff6cd26"
+//        const val API_KEY = "3b9570bd541b47848c30a9832ff6cd26"//ended for today
 //        const val API_KEY = "e2cf35ef206c4578a860449e2bf7e65a" //ended for today
 //        const val API_KEY = "12e762759f344271b7abc1a4da9400e8" //ended for today
-//        const val API_KEY = "0e0a2be67fe14660b09c10952fe86678" //ended for today
+        const val API_KEY = "0e0a2be67fe14660b09c10952fe86678" //ended for today
 //        const val API_KEY = "39e85332726b4ce7a97b9130ee77b9ac"//ended for today
         const val API_HOST = "https://api.spoonacular.com/"
 
@@ -96,7 +96,7 @@ interface FoodApi {
     ): FoodResponse
 
     @GET("recipes/random")
-    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 4): RandomResponse
+    suspend fun getRandomRecipe(@Query("apiKey") apiKey: String, @Query("number") number: Int = 7): RandomResponse
 
 
     @GET("recipes/autocomplete")
